@@ -1,0 +1,19 @@
+---
+- hosts: test
+  sudo: yes
+  tasks:
+  - name: Ensure GitHub is installed
+    yum: 
+      pkg: git 
+      state: latest
+  - name: Clone files from Git hub to web server
+    git: 
+      repo: https://github.com/vidhishah22/AnsibleHelloWorld.git
+      dest: /AnsibleHelloWorld/
+      force: yes
+  - name: Updating directory permissions    
+    file:
+      path: /AnsibleHelloWorld/
+      state: directory
+      mode: 0777
+      recurse: yes

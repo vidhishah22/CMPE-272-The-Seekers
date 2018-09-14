@@ -1,0 +1,14 @@
+---
+- name: Undeploy file which was git cloned and symlinked in the web server
+  hosts: test
+  sudo: yes
+  tasks:
+  - name: Check if file already exists
+    stat: 
+      path: /var/www/html/index.html
+    register: file_exists
+  - name: Delete the file if it exists
+    file: 
+      path: /var/www/html/index.html
+      state: absent
+    when: file_exists.stat.exists

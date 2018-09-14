@@ -1,0 +1,18 @@
+---
+- name: Deploy file from the git cloned file in the web server
+  hosts: test
+  sudo: yes
+  tasks:
+  - name: Create a symbolic link for the file cloned from git
+    file: 
+      src: /AnsibleHelloWorld/Workspace/HelloWorld/index.html
+      dest: /var/www/html/index.html
+      state: link 
+      force: true
+    notify:
+    - restart apache
+  handlers:
+  - name: restart apache
+    service: 
+      name: httpd
+      state: restarted
