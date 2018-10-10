@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b86cc5ac-ffcb-4c4f-a04a-563300e330bb" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="b86cc5ac-ffcb-4c4f-a04a-563300e330bb" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,6 +40,15 @@
         </counts>
       </usages-collector>
     </session>
+    <session id="412904217">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="1" />
+          <entry key="project.open.time.1" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+    </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
@@ -72,8 +79,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/TwitterApiProj/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="423">
-              <caret line="33" column="17" selection-start-line="33" selection-start-column="17" selection-end-line="33" selection-end-column="17" />
+            <state relative-caret-position="491">
+              <caret line="37" column="30" selection-start-line="37" selection-start-column="30" selection-end-line="37" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -102,7 +109,7 @@
     </dirStrings>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -128,18 +135,8 @@
         <subPane>
           <expand>
             <path>
-              <item name="TwitterApiProj" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TwitterApiProj" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TwitterApiProj" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TwitterApiProj" type="462c0819:PsiDirectoryNode" />
-              <item name="TwitterApi" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TwitterApiProj" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TwitterApiProj" type="462c0819:PsiDirectoryNode" />
-              <item name="TwitterApiProj" type="462c0819:PsiDirectoryNode" />
+              <item name="Docker_TwitterAPI_HW" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Docker_TwitterAPI_HW" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -243,8 +240,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/TwitterApiProj/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="423">
-          <caret line="33" column="17" selection-start-line="33" selection-start-column="17" selection-end-line="33" selection-end-column="17" />
+        <state relative-caret-position="491">
+          <caret line="37" column="30" selection-start-line="37" selection-start-column="30" selection-end-line="37" selection-end-column="30" />
         </state>
       </provider>
     </entry>
