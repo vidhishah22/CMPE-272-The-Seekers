@@ -7,10 +7,10 @@ from django.template import loader
 
 
 def getusertweets(request):
-    consumer_key = "oE5oJ3jDwGSHadbN4BK4yNYuy"
-    consumer_secret = "nmlzHoqkt0tw9hLpFbWWgSzDsEYlfPeVmMlOeybHN84hmJxarn"
-    access_token = "1046137456301506560-4RbRVcUt2FChkrljWF0jD06ikZyaqQ"
-    access_token_secret = "l508SIOvH01kdNSuXTzmwANoZlooDJA66ndRJ8Let5nMK"
+    consumer_key = ""
+    consumer_secret = ""
+    access_token = ""
+    access_token_secret = ""
 
     consumer = oauth.Consumer(key=consumer_key, secret=consumer_secret)
     access_token = oauth.Token(key=access_token, secret=access_token_secret)
