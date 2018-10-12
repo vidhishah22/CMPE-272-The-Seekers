@@ -1,13 +1,15 @@
 <!DOCTYPE html>
+<!--{% load static %}-->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Implement Twitter APIs</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <!--<link rel="stylesheet" href="{% static 'TwitterApi/twitter.css' %}">-->
     <style>
-    body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
+    body,h1,h2,h3,h4,h5 {font-family: "Lato", sans-serif}
     body {font-size:15px;}
     .w3-half img{margin-bottom:-6px;margin-top:16px;opacity:0.8;cursor:pointer}
     .w3-half img:hover{opacity:1}
@@ -17,7 +19,12 @@
         width: 100%;
     }
 
-    td, th {
+    th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+    td {
         border: 1px solid #dddddd;
         text-align: left;
         padding: 8px;
@@ -36,9 +43,10 @@
     <h3 class="w3-padding-64"><b>Twitter<br>APIs</b></h3>
   </div>
   <div class="w3-bar-block">
-    <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Home</a>
-    <a href="#GetUserTweets" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Get User Tweets</a>
-    <a href="#GetMentionTweets" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Get Mention Tweets</a>
+    <a href="{% url 'index' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Home</a>
+    <a href="{% url 'getusertweets' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Get User Tweets</a>
+    <a href="{% url 'getmentiontweets' %}" onclick="w3_close()"
+      class="w3-bar-item w3-button w3-hover-white">Get Mention Tweets</a>
     <a href="#GetIdBasedTweets" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Get Id based Tweet</a>
     <a href="#GetFriends" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Get Friends</a>
     <a href="#GetFollowers" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Get Followers</a>
@@ -61,19 +69,20 @@
 <div class="w3-main" style="margin-left:340px;margin-right:40px">
 
   <!-- Get Tweets -->
-  <div class="w3-container" style="margin-top:80px" id="GetUserTweets">
+
+    <div class="w3-container" style="margin-top:80px" id="GetUserTweets">
     <h1 class="w3-xxxlarge"><b>Twitter APIs</b></h1>
     <h1 class="w3-xxlarge w3-text-indigo"><b>Get Status User Timeline</b></h1>
       <h1 class="w3-medium w3-text-blue"><b>
-          <a href="https://developer.twitter.com/en/docs/tweets/timelines/api-reference/get-statuses-user_timeline.html" class="w3-hover-white">
+          <a href="https://developer.twitter.com/en/docs/tweets/timelines/api-reference/get-statuses-user_timeline.html" target="_blank" class="w3-hover-white">
           https://developer.twitter.com/en/docs/tweets/timelines/api-reference/get-statuses-user_timeline.html</a></b></h1>
 
     <hr style="width:50px;border:5px solid green" class="w3-round">
       <p>
         <table>
             <tr>
-                <th>Tweet ID</th>
-                <th>User Tweet</th>
+                <th class="w3-dark-grey">Tweet ID</th>
+                <th class="w3-dark-grey">User Tweet</th>
             </tr>
             {% for twee in tweet %}
             <tr>
@@ -86,13 +95,33 @@
   </div>
 
 
+   <div class="w3-container" style="margin-top:80px" id="GetMentionTweets">
+   <h1 class="w3-xxlarge w3-text-indigo"><b>Get Status Mentions Timeline</b></h1>
+   <a href="https://developer.twitter.com/en/docs/tweets/timelines/api-reference/get-statuses-mentions_timeline" target="_blank" class="w3-hover-white">
+   https://developer.twitter.com/en/docs/tweets/timelines/api-reference/get-statuses-mentions_timeline.html</a></b></h1>
+    <hr style="width:50px;border:5px solid green" class="w3-round">
+     <p>
+       <table>
+           <tr>
+               <th class="w3-dark-grey">Tweet ID</th>
+               <th class="w3-dark-grey">User Mentions Tweets</th>
+           </tr>
+           {% for mention in usermention %}
+           <tr>
+               <td>{{ mention.id }}</td>
+               <td>{{ mention.text }}</td>
+           </tr>
+           {% endfor %}
+       </table>
+     </p>
+   </div>
 
   <!-- GetFriends -->
   <div class="w3-container" id="GetFriends" style="margin-top:75px">
     <h1 class="w3-xxlarge w3-text-indigo"><b>Get Friends:</b></h1>
     <hr style="width:50px;border:5px solid green" class="w3-round">
       <p> <ul>
-        {% for twee in tweet %}
+        {% for twee in mention %}
         <li>
            {{ twee.id }} - {{ twee.text }}
         </li>
