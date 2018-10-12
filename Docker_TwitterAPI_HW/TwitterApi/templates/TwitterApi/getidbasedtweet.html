@@ -35,11 +35,14 @@
            <tr>
                 <th class="w3-dark-grey">Tweet ID</th>
                 <th class="w3-dark-grey">User Mention Tweets</th>
+                <th class="w3-dark-grey">Screen Name</th>
+                <th class="w3-dark-grey">Created At</th>
             </tr>
            <tr>
                <td>{{ id_tweet.id }}</td>
                <td>{{ id_tweet.text }}</td>
-               <!--<td>{{ idtwee.user.name }}</td>-->
+               <td>@{{ id_tweet.user.screen_name }}</td>
+               <td>{{ id_tweet.user.created_at }}</td>
            </tr>
        </table>
      </p>
