@@ -15,7 +15,6 @@ def index(request):
 def call_twitter_api(endpoint):
     oauth_consumer = oauth.Consumer(key=TwitterapiConfig.consumer_key, secret=TwitterapiConfig.consumer_secret)
     oauth_token = oauth.Token(key=TwitterapiConfig.access_token, secret=TwitterapiConfig.access_token_secret)
-    print (oauth_token)
     client = oauth.Client(oauth_consumer, oauth_token)
 
     response, data = client.request(endpoint)
@@ -49,6 +48,22 @@ def get_id_based_tweets(request):
     timeline_endpoint = "https://api.twitter.com/1.1/statuses/show.json?id=1049869614321000448"
     id_tweets = call_twitter_api(timeline_endpoint)
 
+    print('\nTweet Id : ', id_tweets['id'], '\nTweet : ', id_tweets['text'], '\nTweet ScreenName : ',
+          id_tweets['user']['screen_name'], '\nTweet Created At : ', id_tweets['user']['created_at'])
     context = {'id_tweet': id_tweets}
-    # print(render(request, 'TwitterApi/getidbasedtweet.html', context).status_code)
     return render(request, 'TwitterApi/getidbasedtweet.html', context)
+
+
+# Get Friends list
+def get_friends(request):
+    timeline_endpoint = "https://api.twitter.com/1.1/friends/list.json?cursor=-1&screen_name=Seekers Tweet&skip_status=true&include_user_entities=false"
+    friends_list = call_twitter_api(timeline_endpoint)
+
+    for friends in friends_list['users']:
+        print('\nid : ', friends['id'],'\nName : ', friends['name'], '\nScreen Name : ', friends['screen_name'],
+              '\nLocation : ', friends['location'],'\nFollowers Count : ', friends['followers_count'],
+              '\nFriends Count : ',friends['friends_count'], '\nListed Count : ', friends['listed_count'],
+              '\nFavourites Count : ', friends['favourites_count'])
+
+    context = {'friends': friends_list['users']}
+    return render(request, 'TwitterApi/getfriends.html', context)
