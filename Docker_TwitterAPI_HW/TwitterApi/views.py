@@ -8,7 +8,7 @@ from .apps import TwitterapiConfig
 
 
 def index(request):
-    return render(request,'TwitterApi/base.html')
+    return render(request, 'TwitterApi/home.html')
 
 
 # Authorize tokens and call api
@@ -56,14 +56,62 @@ def get_id_based_tweets(request):
 
 # Get Friends list
 def get_friends(request):
-    timeline_endpoint = "https://api.twitter.com/1.1/friends/list.json?cursor=-1&screen_name=Seekers Tweet&skip_status=true&include_user_entities=false"
+    timeline_endpoint = "https://api.twitter.com/1.1/friends/list.json?cursor=-1&screen_name=Seekers " \
+                        "Tweet&skip_status=true&include_user_entities=false "
     friends_list = call_twitter_api(timeline_endpoint)
 
     for friends in friends_list['users']:
-        print('\nid : ', friends['id'],'\nName : ', friends['name'], '\nScreen Name : ', friends['screen_name'],
-              '\nLocation : ', friends['location'],'\nFollowers Count : ', friends['followers_count'],
-              '\nFriends Count : ',friends['friends_count'], '\nListed Count : ', friends['listed_count'],
+        print('\nid : ', friends['id'], '\nName : ', friends['name'], '\nScreen Name : ', friends['screen_name'],
+              '\nLocation : ', friends['location'], '\nFollowers Count : ', friends['followers_count'],
+              '\nFriends Count : ', friends['friends_count'], '\nListed Count : ', friends['listed_count'],
               '\nFavourites Count : ', friends['favourites_count'])
 
     context = {'friends': friends_list['users']}
     return render(request, 'TwitterApi/getfriends.html', context)
+
+
+# Get Followers list
+def get_followers(request):
+    timeline_endpoint = "https://api.twitter.com/1.1/followers/list.json?cursor=-1&screen_name=Seekers " \
+                        "Tweet&skip_status=true&include_user_entities=false "
+    followers_list = call_twitter_api(timeline_endpoint)
+
+    for followers in followers_list['users']:
+        print('\nid : ', followers['id'], '\nName : ', followers['name'], '\nScreen Name : ', followers['screen_name'],
+              '\nLocation : ', followers['location'], '\nFollowers Count : ', followers['followers_count'],
+              '\nFriends Count : ', followers['friends_count'], '\nListed Count : ', followers['listed_count'],
+              '\nFavourites Count : ', followers['favourites_count'])
+
+    context = {'followers': followers_list['users']}
+    return render(request, 'TwitterApi/getfollowers.html', context)
+
+
+# Get Account Settings
+def get_account_settings(request):
+    timeline_endpoint = "https://api.twitter.com/1.1/account/settings.json"
+    account_settings_list = call_twitter_api(timeline_endpoint)
+    print('\n','Screen Name : ',account_settings_list['screen_name'],
+          '\n Geo Enabled : ',account_settings_list['geo_enabled'],'\n Language :', account_settings_list['language'],
+          '\n Discoverable_by_email :', account_settings_list['discoverable_by_email'],
+          '\n Discoverable_by_mobile_phone :', account_settings_list['discoverable_by_mobile_phone'])
+
+    context = {'account_settings': account_settings_list}
+    return render(request, 'TwitterApi/getaccountsettings.html', context)
+
+
+# Get Twitters Privacy Policy
+def get_privacy_policy(request):
+    timeline_endpoint = "https://api.twitter.com/1.1/help/privacy.json"
+    privacy_policy_list = call_twitter_api(timeline_endpoint)
+    print("Twitter Privacy Policy\n", privacy_policy_list['privacy'])
+    context = {'privacy_policy': privacy_policy_list}
+    return render(request, 'TwitterApi/getprivacypolicy.html', context)
+
+
+# Get Twitters Terms of Service
+def get_terms_of_service(request):
+    timeline_endpoint = "https://api.twitter.com/1.1/help/tos.json"
+    terms_of_service_list = call_twitter_api(timeline_endpoint)
+    print("Twitter Terms of Service\n", terms_of_service_list['tos'])
+    context = {'terms_of_service': terms_of_service_list}
+    return render(request, 'TwitterApi/gettermsofservice.html', context)
