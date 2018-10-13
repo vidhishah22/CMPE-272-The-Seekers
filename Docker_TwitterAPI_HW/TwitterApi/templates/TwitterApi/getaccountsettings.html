@@ -1,0 +1,54 @@
+{% extends 'TwitterApi/base.html' %}
+{% load static %}
+{% block content %}
+  <html>
+  <head>
+      <!--<link rel="stylesheet" type="text/css" href="{% static 'css/twitter.css' %}">-->
+      <style>
+    table {
+        font-family: "Lato", sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+    th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+    td {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+    tr:nth-child(odd) {
+        background-color: #dddddd;
+    }
+</style>
+  </head>
+  <body>
+  <div class="w3-container" style="margin-top:30px" id="GetAccountSettings">
+  <h1 class="w3-xxlarge w3-text-indigo"><b>Get Account Settings</b></h1>
+  <a href="https://developer.twitter.com/en/docs/accounts-and-users/manage-account-settings/api-reference/get-account-settings" target="_blank" class="w3-hover-white">
+   https://developer.twitter.com/en/docs/accounts-and-users/manage-account-settings/api-reference/get-account-settings</a></b></h1>
+     <p>
+       <table>
+           <tr>
+                <th class="w3-dark-grey">Screen Name</th>
+                <th class="w3-dark-grey">Geo Enabled</th>
+                <th class="w3-dark-grey">Language</th>
+                <th class="w3-dark-grey">Discoverable_by_email</th>
+                <th class="w3-dark-grey">Discoverable_by_mobile_phone</th>
+            </tr>
+           <tr>
+               <td>@{{ account_settings.screen_name }}</td>
+               <td>{{ account_settings.geo_enabled }}</td>
+               <td>{{ account_settings.language }}</td>
+               <td>{{ account_settings.discoverable_by_email }}</td>
+               <td>{{ account_settings.discoverable_by_mobile_phone }}</td>
+           </tr>
+       </table>
+     </p>
+   </div>
+  </body>
+</html>
+{% endblock %}
