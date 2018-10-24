@@ -1,3 +1,7 @@
+"""
+@Author: Vidhi Shah
+@Purpose: It contains all the urls where page will be redirected when twitter api responses are received
+"""
 from django.urls import include, path
 from . import views
 

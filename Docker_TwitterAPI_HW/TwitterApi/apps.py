@@ -1,3 +1,8 @@
+"""
+@Authors: Vidhi Shah, Sithara Krishna Murthy
+@Purpose: It contains Twitter API developer keys
+"""
+
 from django.apps import AppConfig
 
 class TwitterapiConfig(AppConfig):

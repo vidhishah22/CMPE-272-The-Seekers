@@ -1,33 +1,16 @@
+<!--
+@Author: Sithara Krishna Murthy
+@Purpose: HTML page for showing user's friends
+-->
 {% extends 'TwitterApi/base.html' %}
-{% load static %}
 {% block content %}
   <html>
   <head>
-      <!--<link rel="stylesheet" type="text/css" href="{% static 'css/twitter.css' %}">-->
-      <style>
-    table {
-        font-family: "Lato", sans-serif;
-        border-collapse: collapse;
-        width: 100%;
-    }
-    th {
-        border: 1px solid #dddddd;
-        text-align: left;
-        padding: 8px;
-    }
-    td {
-        border: 1px solid #dddddd;
-        text-align: left;
-        padding: 8px;
-    }
-    tr:nth-child(odd) {
-        background-color: #dddddd;
-    }
-</style>
   </head>
   <body>
   <div class="w3-container" style="margin-top:30px" id="GetFriends">
   <h1 class="w3-xxlarge w3-text-indigo"><b>Get Friends</b></h1>
+  <b class="w3-large">Returns a cursored collection of user objects for every user @TheSeekers6 is following</b><br><br>
   <a href="https://developer.twitter.com/en/docs/accounts-and-users/follow-search-get-users/api-reference/get-friends-list" target="_blank" class="w3-hover-white">
    https://developer.twitter.com/en/docs/accounts-and-users/follow-search-get-users/api-reference/get-friends-list</a></b></h1>
      <p>

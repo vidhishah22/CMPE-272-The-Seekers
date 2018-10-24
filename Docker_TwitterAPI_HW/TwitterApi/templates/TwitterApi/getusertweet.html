@@ -1,35 +1,19 @@
+<!--
+@Author: Vidhi Shah
+@Purpose: HTML page for showing user timeline tweets
+-->
+
 {% extends 'TwitterApi/base.html' %}
-{% load static %}
 {% block content %}
   <html>
   <head>
-      <!--<link rel="stylesheet" type="text/css" href="{% static 'css/twitter.css' %}">-->
-      <style>
-    table {
-        font-family: "Lato", sans-serif;
-        border-collapse: collapse;
-        width: 100%;
-    }
-    th {
-        border: 1px solid #dddddd;
-        text-align: left;
-        padding: 8px;
-    }
-    td {
-        border: 1px solid #dddddd;
-        text-align: left;
-        padding: 8px;
-    }
-    tr:nth-child(odd) {
-        background-color: #dddddd;
-    }
-</style>
   </head>
   <body>
   <div class="w3-container" style="margin-top:30px" id="GetUserTweets">
   <h1 class="w3-xxlarge w3-text-indigo"><b>Get Status User Timeline</b></h1>
+  <b class="w3-large">Returns a collection of the most recent 20 Tweets posted by the user @TheSeekers6</b><br><br>
   <a href="https://developer.twitter.com/en/docs/tweets/timelines/api-reference/get-statuses-user_timeline.html" target="_blank" class="w3-hover-white">
-   https://developer.twitter.com/en/docs/tweets/timelines/api-reference/get-statuses-user_timeline.html</a></b></h1>
+   https://developer.twitter.com/en/docs/tweets/timelines/api-reference/get-statuses-user_timeline.html</a>
      <p>
        <table>
            <tr>

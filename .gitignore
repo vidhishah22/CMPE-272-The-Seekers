@@ -106,4 +106,4 @@ venv.bak/
 .mypy_cache/
 
 # TwitterProject
-.idea/
+Docker_TwitterAPI_HW/.idea/
