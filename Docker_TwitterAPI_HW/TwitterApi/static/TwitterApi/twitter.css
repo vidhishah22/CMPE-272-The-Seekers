@@ -1,0 +1,18 @@
+table {
+        font-family: "Lato", sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+td {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+tr:nth-child(odd) {
+        background-color: #dddddd;
+    }

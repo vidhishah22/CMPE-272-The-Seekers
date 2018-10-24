@@ -1,5 +1,8 @@
+<!--
+@Authors: Reetika Goel, Pragya Gautam
+@Purpose: This page contains HTML structure for home page
+-->
 {% extends 'TwitterApi/base.html' %}
-{% load static %}
 {% block content %}
   <html>
   <head>
@@ -7,15 +10,10 @@
   <body>
   <div class="w3-container" style="margin-top:30px" id="Home">
   <h1 class="w3-xxlarge w3-text-indigo"><b></b></h1>
-    <!-- Photo grid (modal) -->
-  <!--<div class="w3-row-padding">-->
-    <!--<div class="w3-half">-->
-      <!--<img src="https://marketingland.com/wp-content/ml-loads/2012/08/twitter-api-developers-featured.jpg" style="width:100%" onclick="onClick(this)" alt="Twitter APIs">-->
-    <!--</div>-->
 
-  <div class="w3-large w3-light-grey w3-container w3-padding-32 w3-bar-block">
+  <div class="w3-large w3-light-grey w3-container w3-padding-10 w3-bar-block">
       <div class="w3-half">
-     <img src="https://marketingland.com/wp-content/ml-loads/2012/08/twitter-api-developers-featured.jpg" style="width:100%" onclick="onClick(this)" alt="Twitter APIs">
+     <img src="https://marketingland.com/wp-content/ml-loads/2012/08/twitter-api-developers-featured.jpg" style="width:100%" alt="Twitter APIs">
       </div>
       <ul class="w3-ul w3-light-grey w3-center">
           <li class="w3-padding-16">Amazon EC2</li>
@@ -24,13 +22,13 @@
           <li class="w3-padding-16">HTML/CSS</li>
       </ul>
       <p>
-        The purpose of this project is to write a client application which uses Docker Container framework onto which various
-        components and applications can be deployed to implement 8 twitter API’s. The application is built around the twitter account
-        of the developer. The developer requests for the authentication key and token from the twitter account to work on the twitter
-        APIs. Using the same, the developer gets to choose from the list of twitter APIs from the twitter website and
-        call them. An HTML page is designed as a part of user interface with CSS styling which runs on a local host.
-        When the client clicks on any of these API’s it redirects to a new page which displays the response to the API Request.
-        Whenever the user clicks on these APIs, the tokens and keys get authenticated before displaying the result of these API calls.
+          This project is work of "<b><u>THE SEEKERS</u></b>" Team that includes Vidhi, Sithara, Pragya and Reetika. <br><br>
+          The purpose of this project is to write a client application to implement 8 Twitter API’s.
+          It uses Docker Container framework onto which various components and packages can be deployed.
+          The application is built around a developer's Twitter account. The developer initially requests for the authentication key
+          and token from the Twitter account to work with the APIs. Using the same, the developer can send request to any of the
+          Twitter APIs and receive a response. An HTML page is designed as a part of user interface with CSS styling.
+          When the client clicks on any of these API’s, it redirects to a new page which displays the response to the API Request.
      </p>
    </div>
   </body>
