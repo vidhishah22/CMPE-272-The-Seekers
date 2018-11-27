@@ -1,0 +1,45 @@
+<!--
+@Author: Sithara Krishna Murthy
+@Purpose: HTML page for showing user's friends
+-->
+{% extends 'TwitterApi/base.html' %}
+{% block content %}
+  <html>
+  <head>
+  </head>
+  <body>
+  <div class="w3-container" style="margin-top:30px" id="GetFriends">
+  <h1 class="w3-xxlarge w3-text-indigo"><b>Get Friends</b></h1>
+  <b class="w3-large">Returns a cursored collection of user objects for every user @TheSeekers6 is following</b><br><br>
+  <a href="https://developer.twitter.com/en/docs/accounts-and-users/follow-search-get-users/api-reference/get-friends-list" target="_blank" class="w3-hover-white">
+   https://developer.twitter.com/en/docs/accounts-and-users/follow-search-get-users/api-reference/get-friends-list</a></b></h1>
+     <p>
+       <table>
+           <tr>
+                <th class="w3-dark-grey">Friend ID</th>
+                <th class="w3-dark-grey">Friend Name</th>
+                <th class="w3-dark-grey">Screen Name</th>
+                <th class="w3-dark-grey">Location</th>
+                <th class="w3-dark-grey">Followers Count</th>
+                <th class="w3-dark-grey">Friends Count</th>
+                <th class="w3-dark-grey">Listed Count</th>
+                <th class="w3-dark-grey">Favourites Count</th>
+            </tr>
+            {% for friend in friends %}
+           <tr>
+               <td>{{ friend.id }}</td>
+               <td>{{ friend.name }}</td>
+               <td>@{{ friend.screen_name }}</td>
+               <td>{{ friend.location }}</td>
+               <td>{{ friend.followers_count }}</td>
+               <td>{{ friend.friends_count }}</td>
+               <td>{{ friend.listed_count }}</td>
+               <td>{{ friend.favourites_count }}</td>
+           </tr>
+           {% endfor %}
+       </table>
+     </p>
+   </div>
+  </body>
+</html>
+{% endblock %}

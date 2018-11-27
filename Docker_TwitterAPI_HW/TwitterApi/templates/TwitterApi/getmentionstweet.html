@@ -1,0 +1,33 @@
+<!--
+@Author: Sithara Krishna Murthy
+@Purpose: HTML page for showing user mention timeline tweets
+-->
+{% extends 'TwitterApi/base.html' %}
+{% block content %}
+  <html>
+  <head>
+  </head>
+  <body>
+  <div class="w3-container" style="margin-top:30px" id="GetMentionTweets">
+  <h1 class="w3-xxlarge w3-text-indigo"><b>Get Status Mention Timeline</b></h1>
+  <b class="w3-large">Returns the 20 most recent mentions for the user @TheSeekers6</b><br><br>
+  <a href="https://developer.twitter.com/en/docs/tweets/timelines/api-reference/get-statuses-mentions_timeline.html" target="_blank" class="w3-hover-white">
+   https://developer.twitter.com/en/docs/tweets/timelines/api-reference/get-statuses-mentions_timeline.html</a></b></h1>
+     <p>
+       <table>
+           <tr>
+                <th class="w3-dark-grey">Tweet ID</th>
+                <th class="w3-dark-grey">User Mention Tweets</th>
+            </tr>
+            {% for mention in usermention %}
+           <tr>
+               <td>{{ mention.id }}</td>
+               <td>{{ mention.text }}</td>
+           </tr>
+           {% endfor %}
+       </table>
+     </p>
+   </div>
+  </body>
+</html>
+{% endblock %}

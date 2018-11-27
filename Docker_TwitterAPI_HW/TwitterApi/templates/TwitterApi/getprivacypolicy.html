@@ -1,0 +1,24 @@
+<!--
+@Author: Reetika Goel
+@Purpose: HTML page for Tweeter privacy policy
+-->
+{% extends 'TwitterApi/base.html' %}
+{% block content %}
+  <html>
+  <head>
+  </head>
+  <body>
+  <div class="w3-container" style="margin-top:30px" id="GetPrivacyPolicy">
+  <h1 class="w3-xxlarge w3-text-indigo"><b>Get Twitter Privacy Policy</b></h1>
+  <a href="https://developer.twitter.com/en/docs/developer-utilities/privacy-policy/api-reference/get-help-privacy" target="_blank" class="w3-hover-white">
+   https://developer.twitter.com/en/docs/developer-utilities/privacy-policy/api-reference/get-help-privacy</a></b></h1>
+     <div class="w3-section">
+         <textarea rows="11" cols="100">
+             {{ privacy_policy.privacy }}
+         </textarea>
+      </div>
+     </p>
+   </div>
+  </body>
+</html>
+{% endblock %}

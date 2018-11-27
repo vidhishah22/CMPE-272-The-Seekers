@@ -1,0 +1,35 @@
+<!--
+@Author: Reetika Goel
+@Purpose: HTML page for showing user tweet based on tweet id
+-->
+{% extends 'TwitterApi/base.html' %}
+{% block content %}
+  <html>
+  <head>
+  </head>
+  <body>
+  <div class="w3-container" style="margin-top:30px" id="GetIdBasedTweets">
+  <h1 class="w3-xxlarge w3-text-indigo"><b>Get Tweet Based On Id</b></h1>
+  <b class="w3-large">Returns a single Tweet, specified by the id parameter. The Tweet’s author will also be embedded within the Tweet.</b><br><br>
+  <a href="https://developer.twitter.com/en/docs/tweets/post-and-engage/api-reference/get-statuses-show-id" target="_blank" class="w3-hover-white">
+   https://developer.twitter.com/en/docs/tweets/post-and-engage/api-reference/get-statuses-show-id</a></b></h1>
+     <p>
+       <table>
+           <tr>
+                <th class="w3-dark-grey">Tweet ID</th>
+                <th class="w3-dark-grey">User Mention Tweets</th>
+                <th class="w3-dark-grey">Screen Name</th>
+                <th class="w3-dark-grey">Created At</th>
+            </tr>
+           <tr>
+               <td>{{ id_tweet.id }}</td>
+               <td>{{ id_tweet.text }}</td>
+               <td>@{{ id_tweet.user.screen_name }}</td>
+               <td>{{ id_tweet.user.created_at }}</td>
+           </tr>
+       </table>
+     </p>
+   </div>
+  </body>
+</html>
+{% endblock %}

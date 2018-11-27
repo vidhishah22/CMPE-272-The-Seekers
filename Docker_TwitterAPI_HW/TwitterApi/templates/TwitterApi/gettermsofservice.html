@@ -1,0 +1,25 @@
+<!--
+@Author: Pragya Gautam
+@Purpose: HTML page for Tweeter terms of service
+-->
+
+{% extends 'TwitterApi/base.html' %}
+{% block content %}
+  <html>
+  <head>
+  </head>
+  <body>
+  <div class="w3-container" style="margin-top:30px" id="GetTermsOfService">
+  <h1 class="w3-xxlarge w3-text-indigo"><b>Get Twitter Terms Of Service</b></h1>
+  <a href="https://developer.twitter.com/en/docs/developer-utilities/terms-of-service/api-reference/get-help-tos" target="_blank" class="w3-hover-white">
+   https://developer.twitter.com/en/docs/developer-utilities/terms-of-service/api-reference/get-help-tos</a></b></h1>
+     <div class="w3-section">
+         <textarea rows="11" cols="100">
+             {{ terms_of_service.tos }}
+         </textarea>
+      </div>
+     </p>
+   </div>
+  </body>
+</html>
+{% endblock %}

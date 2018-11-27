@@ -1,0 +1,45 @@
+<!--
+@Author: Vidhi Shah
+@Purpose: HTML page for showing user's followers
+-->
+{% extends 'TwitterApi/base.html' %}
+{% block content %}
+  <html>
+  <head>
+  </head>
+  <body>
+  <div class="w3-container" style="margin-top:30px" id="GetFollowers">
+  <h1 class="w3-xxlarge w3-text-indigo"><b>Get Followers</b></h1>
+  <b class="w3-large">Returns a cursored collection of user objects for users following the user @TheSeekers6</b><br><br>
+  <a href="https://developer.twitter.com/en/docs/accounts-and-users/follow-search-get-users/api-reference/get-followers-list" target="_blank" class="w3-hover-white">
+   https://developer.twitter.com/en/docs/accounts-and-users/follow-search-get-users/api-reference/get-followers-list</a></b></h1>
+     <p>
+       <table>
+           <tr>
+                <th class="w3-dark-grey">Followers ID</th>
+                <th class="w3-dark-grey">Followers Name</th>
+                <th class="w3-dark-grey">Screen Name</th>
+                <th class="w3-dark-grey">Location</th>
+                <th class="w3-dark-grey">Followers Count</th>
+                <th class="w3-dark-grey">Friends Count</th>
+                <th class="w3-dark-grey">Listed Count</th>
+                <th class="w3-dark-grey">Favourites Count</th>
+            </tr>
+            {% for follower in followers %}
+           <tr>
+               <td>{{ follower.id }}</td>
+               <td>{{ follower.name }}</td>
+               <td>@{{ follower.screen_name }}</td>
+               <td>{{ follower.location }}</td>
+               <td>{{ follower.followers_count }}</td>
+               <td>{{ follower.friends_count }}</td>
+               <td>{{ follower.listed_count }}</td>
+               <td>{{ follower.favourites_count }}</td>
+           </tr>
+           {% endfor %}
+       </table>
+     </p>
+   </div>
+  </body>
+</html>
+{% endblock %}
