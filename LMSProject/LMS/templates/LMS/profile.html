@@ -1,6 +1,9 @@
 <!DOCTYPE html>
+{% block content %}
 <html>
+<head>
 <title>Leave Management System</title>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -12,6 +15,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 .w3-bar,h1,button {font-family: "Montserrat", sans-serif}
 .fa-anchor,.fa-coffee {font-size:200px}
 </style>
+</head>
 <body>
 
 <!-- Navbar -->
@@ -43,7 +47,11 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 <header class="w3-container w3-blue w3-center" style="padding:128px 16px" id="home">
   <h1 class="w3-margin w3-jumbo">Home Page</h1>
   <p class="w3-xlarge">Welcome to the Leave Management System</p>
-  <p class="w3-large">"Name of Employee - Employee ID"</p>
+
+    <p class="w3-large">
+      "Name of Employee: {{ employees.First_Name }} - Employee ID: {{ employees.Emp_No }}"
+    </p>
+
   <p class="w3-large">"Designation"</p>
   <p class="w3-medium">For any question/issue, please don't hesitate to contact HR support.</p>
   <!--button class="w3-button w3-black w3-padding-large w3-large w3-margin-top">Get Started</button-->
@@ -317,3 +325,5 @@ function myFunction() {
 </script>
 
 </body>
+</html>
+{% endblock %}

@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    command: bash -c "python3 manage.py test && python3 manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
