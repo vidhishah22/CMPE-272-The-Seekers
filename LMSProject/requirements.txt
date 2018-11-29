@@ -2,3 +2,7 @@ Django==2.1.2
 psycopg2
 requests
 oauth2
+social-auth-app-django
+python-jose
+six
+python-dotenv

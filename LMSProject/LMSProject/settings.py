@@ -119,3 +119,26 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# SOCIAL AUTH  AUTH0 BACKEND CONFIG
+SOCIAL_AUTH_TRAILING_SLASH = False
+SOCIAL_AUTH_AUTH0_KEY = 'LCTMUEpEUe9eV_0NWzAkUvkqF6cC19aT'
+SOCIAL_AUTH_AUTH0_SECRET = 'OfVy3Tj1iNgZ__opD2NEYym_H_XZqbZiHRPJrhkuK1wYWuygwrYhWB-zfWpu2oLo'
+SOCIAL_AUTH_AUTH0_SCOPE = [
+    'openid',
+    'profile'
+]
+SOCIAL_AUTH_AUTH0_DOMAIN = 'seekerslms.auth0.com'
+AUDIENCE = 'https://' + SOCIAL_AUTH_AUTH0_DOMAIN + '/userinfo'
+
+if AUDIENCE:
+    SOCIAL_AUTH_AUTH0_AUTH_EXTRA_ARGUMENTS = {'audience': AUDIENCE}
+AUTHENTICATION_BACKENDS = {
+    'LMS.auth0backend.Auth0',
+    'django.contrib.auth.backends.ModelBackend'
+}
+
+
+LOGIN_URL = "/LMS/login/auth0"
+LOGIN_REDIRECT_URL = "/LMS/dashboard"
+LOGOUT_REDIRECT_URL = "/"
