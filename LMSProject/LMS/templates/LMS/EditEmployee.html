@@ -19,22 +19,37 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
     <div class="w3-content">
         <div class="w3-twothird">
             <h1>Add/Update/Delete Employee</h1>
-
             <div class="w3-row w3-padding-32">
-
                 <div class="w3-col m12">
-                    <form action="/action_page.php" target="_blank">
                         <div class="w3-bar w3-black">
                             <p><button class="w3-bar-item w3-button w3-hover-blue w3-large" onclick="openEmployee('Add Employee')"> Add Employee </button></p>
                             <p><button class="w3-bar-item w3-button w3-hover-blue w3-large" onclick="openEmployee('Update Employee')"> Update Employee </button></p>
                             <p><button class="w3-bar-item w3-button w3-hover-blue w3-large" onclick="openEmployee('Delete Employee')"> Delete Employee </button></p>
                         </div>
-                        <div class="w3-row w3-padding-32 addEmp" id="Add Employee">
+                        <!-- Add Employee Grid -->
+                        <form action="AddEmployee" method="post">
+                            <div class="w3-row w3-padding-32 addEmp" id="Add Employee">
                             <h4>Add Employee</h4>
                             <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
                                 <div class="w3-half">
+                                    <p class="w3-small">First Name</p>
+                                    <input class="w3-input w3-border" type="text" placeholder="First Name" required name="FName" required>
+                                </div>
+                                <div class="w3-half">
+                                    <p class="w3-small">Middle Name</p>
+                                    <input class="w3-input w3-border" type="text" placeholder="Middle Name" required name="MName" required>
+                                </div>
+                                <div class="w3-half">
+                                    <p class="w3-small">Last Name</p>
+                                    <input class="w3-input w3-border" type="text" placeholder="Last Name" required name="LName" required>
+                                </div>
+                                <div class="w3-half">
+                                    <p class="w3-small">Date Of Birth</p>
+                                    <input class="w3-input w3-border" type="text" placeholder="Date Of Birth" required name="DOB" required>
+                                </div>
+                                <div class="w3-half">
                                     <p class="w3-small">Street Address</p>
-                                    <input class="w3-input w3-border" type="text" placeholder="Street Address" required name="Street Address" required>
+                                    <input class="w3-input w3-border" type="text" placeholder="Street Address" required name="StreetAddress" required>
                                 </div>
                                 <div class="w3-half">
                                     <p class="w3-small">Address2</p>
@@ -48,13 +63,13 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
                                 </div>
                                 <div class="w3-half">
                                     <p class="w3-small">State/Region/Province</p>
-                                    <input class="w3-input w3-border" type="text" placeholder="State/Region/Province" required name="State/Region/Province" required>
+                                    <input class="w3-input w3-border" type="text" placeholder="State/Region/Province" required name="State" required>
                                 </div>
                             </div>
                             <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
                                 <div class="w3-half">
                                     <p class="w3-small">Zip Code</p>
-                                    <input class="w3-input w3-border" type="text" placeholder="Zip Code" required name="Zip Code" required>
+                                    <input class="w3-input w3-border" type="text" placeholder="Zip Code" required name="Zip" required>
                                 </div>
                                 <div class="w3-half">
                                     <p class="w3-small">Country</p>
@@ -64,11 +79,11 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
                             <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
                                 <div class="w3-half">
                                     <p class="w3-small">Email Address</p>
-                                    <input class="w3-input w3-border" type="text" placeholder="Email Address" required name="Email Address" required>
+                                    <input class="w3-input w3-border" type="text" placeholder="Email Address" required name="Email" required>
                                 </div>
                                 <div class="w3-half">
                                     <p class="w3-small">Phone Number</p>
-                                    <input class="w3-input w3-border" type="text" placeholder="Phone Number" required name="Phone Number" required>
+                                    <input class="w3-input w3-border" type="text" placeholder="Phone Number" required name="PhoneNo" required>
                                 </div>
                             </div>
                             <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
@@ -78,16 +93,13 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
                                 </div>
                                 <div class="w3-half">
                                     <p class="w3-small">Date of Joining</p>
-                                    <input class="w3-input w3-border" type="text" placeholder="Date of Joining" required name="Date of Joining" required>
+                                    <input class="w3-input w3-border" type="text" placeholder="Date of Joining" required name="DOJ" required>
                                 </div>
                             </div>
                             <button class="w3-button w3-black w3-section w3-right" type="submit">Add</button>
                         </div>
-
-
-
+                        </form>
                         <!-- Update Employee Grid -->
-
                         <div class="w3-row w3-padding-32 addEmp" id="Update Employee" style="display:none">
                             <h4>Update Employee</h4>
 
@@ -147,30 +159,28 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
                             </div>
                         <button class="w3-button w3-black w3-section w3-right" type="submit">Update</button>
                         </div>
-
-                </div>
-
-
-
-                <!-- Delete Employee Grid -->
-                <div class="w3-row w3-padding-32 addEmp" id="Delete Employee" style="display:none">
+                        <!-- Delete Employee Grid -->
+                        <form action="DeleteEmployee" method="post">
+                        <div class="w3-row w3-padding-32 addEmp" id="Delete Employee" style="display:none">
                     <h4>Delete Employee</h4>
 
                     <p class="w3-small">Employee ID</p>
-                    <input class="w3-input w3-border" type="text" placeholder="Employee ID" required name="Employee ID">
-                    <button class="w3-button w3-black w3-section w3-right" type="submit">Search</button>
-                    <input class="w3-input w3-border" type="text" placeholder="Display Employee Info- Name and Id" required name="Employee Name and ID">
-                    <button onclick="document.getElementById('id02').style.display='block'" class="w3-button w3-black w3-section w3-right" type="submit">Delete</button>
+                    <!---<input class="w3-input w3-border" type="text" placeholder="Employee ID" required name="Employee ID">
+                    <button class="w3-button w3-black w3-section w3-right" type="submit">Search</button>-->
+                    <input class="w3-input w3-border" type="text" placeholder="Display Employee Info- Name and Id" required name="Emp_No">
+                    <button  class="w3-button w3-black w3-section w3-right" type="submit">Delete</button>
                     <div id="id02" class="w3-modal">
                         <div class="w3-modal-content">
                             <div class="w3-container">
-                                <span onclick="document.getElementById('id02').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+                                <span onclick="location.href='{% url 'DeleteEmployee' %}'" class="w3-button w3-display-topright">&times;</span>
                                 <p>Employee has been deleted</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                </form>
+                        </form>
+                </div>
+
             </div>
         </div>
     </div>
