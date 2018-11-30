@@ -34,51 +34,51 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
                             <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
                                 <div class="w3-half">
                                     <p class="w3-small">Street Address</p>
-                                    <input class="w3-input w3-border" type="text" placeholder="Street Address" required name="Street Address" value={{employees.Street_Address}} readonly>
+                                    <input class="w3-input w3-border" type="text" placeholder="Street Address" required name="Street Address" value='{{employees.Street_Address}}' readonly>
                                 </div>
                                 <div class="w3-half">
                                     <p class="w3-small">Address2</p>
-                                    <input class="w3-input w3-border" type="text" placeholder="Address2" required name="Address2" value={{employees.Address2}} readonly>
+                                    <input class="w3-input w3-border" type="text" placeholder="Address2" required name="Address2" value='{{employees.Address2}}' readonly>
                                 </div>
                             </div>
                             <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
                                 <div class="w3-half">
                                     <p class="w3-small">City</p>
-                                    <input class="w3-input w3-border" type="text" placeholder="City" required name="City" value={{employees.City}} readonly>
+                                    <input class="w3-input w3-border" type="text" placeholder="City" required name="City" value='{{employees.City}}' readonly>
                                 </div>
                                 <div class="w3-half">
-                                    <p class="w3-small">State/Region/Province</p>
-                                    <input class="w3-input w3-border" type="text" placeholder="State/Region/Province" required name="State/Region/Province" value="hello" readonly>
+                                    <p class="w3-small">State</p>
+                                    <input class="w3-input w3-border" type="text" placeholder="State" required name="State" value='{{employees.State}}' readonly>
                                 </div>
                             </div>
                             <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
                                 <div class="w3-half">
-                                    <p class="w3-small">Zip Code</p>
-                                    <input class="w3-input w3-border" type="text" placeholder="Zip Code" required name="Zip Code" value="hello" readonly>
+                                    <p class="w3-small">Postal Code</p>
+                                    <input class="w3-input w3-border" type="text" placeholder="Postal Code" required name="Postal Code" value='{{employees.Postal_Code}}' readonly>
                                 </div>
                                 <div class="w3-half">
                                     <p class="w3-small">Country</p>
-                                    <input class="w3-input w3-border" type="text" placeholder="Country" required name="Country" value="hello" readonly>
+                                    <input class="w3-input w3-border" type="text" placeholder="Country" required name="Country" value='{{employees.Country}}' readonly>
                                 </div>
                             </div>
                             <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
                                 <div class="w3-half">
                                     <p class="w3-small">Email Address</p>
-                                    <input class="w3-input w3-border" type="text" placeholder="Email Address" required name="Email Address" value="hello" readonly>
+                                    <input class="w3-input w3-border" type="text" placeholder="Email Address" required name="Email Address" value='{{employees.Email_Address}}' readonly>
                                 </div>
                                 <div class="w3-half">
-                                    <p class="w3-small">Phone Number</p>
-                                    <input class="w3-input w3-border" type="text" placeholder="Phone Number" required name="Phone Number" value="hello" readonly>
+                                    <p class="w3-small">Mobile Number</p>
+                                    <input class="w3-input w3-border" type="text" placeholder="Mobile Number" required name="Mobile Number" value='{{employees.Mobile_Number}}' readonly>
                                 </div>
                             </div>
                             <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
                                 <div class="w3-half">
                                     <p class="w3-small">Nationality</p>
-                                    <input class="w3-input w3-border" type="text" placeholder="Nationality" required name="Nationality" value="hello" readonly>
+                                    <input class="w3-input w3-border" type="text" placeholder="Nationality" required name="Nationality" value='{{employees.Nationality}}' readonly>
                                 </div>
                                 <div class="w3-half">
                                     <p class="w3-small">Date of Joining</p>
-                                    <input class="w3-input w3-border" type="text" placeholder="Date of Joining" required name="Date of Joining" value="hello" readonly>
+                                    <input class="w3-input w3-border" type="text" placeholder="Date of Joining" required name="Date of Joining" value='{{employees.Hire_Date}}' readonly>
                                 </div>
                             </div>
                         </form>
@@ -104,19 +104,6 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 </footer>
 
 
-
-
-<script>
-// Used to toggle the menu on small screens when clicking on the menu button
-function myFunction() {
-    var x = document.getElementById("navDemo");
-    if (x.className.indexOf("w3-show") == -1) {
-        x.className += " w3-show";
-    } else {
-        x.className = x.className.replace(" w3-show", "");
-    }
-}
-</script>
 
 </body>
 </html>

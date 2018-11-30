@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Approve Leave</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
+.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+.fa-anchor,.fa-coffee {font-size:200px}
+</style>
+</head>
+<body>
+<div class="w3-row-padding w3-light-grey w3-padding-64" id="approveleave">
+
+    <div class="w3-content">
+        <div class="w3-container" style="padding:96px 16px">
+            <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+                <h1>Approve Leave</h1>
+                <table class="w3-table-all">
+                    <thead>
+                    <tr class="w3-blue">
+                        <th>Name</th>
+                        <th>Reason</th>
+                        <th>Begin Date</th>
+                        <th>End Date</th>
+                        <th>Requested Days</th>
+                        <th>Selected</th>
+                    </tr>
+                    </thead>
+                    <tr>
+                        <td>Reetika</td>
+                        <td>Vacation</td>
+                        <td>04/07/2018</td>
+                        <td>07/07/2018</td>
+                        <td>4</td>
+                        <!-- <td><input class="w3-check" type="checkbox"></td> -->
+                    </tr>
+                    <tr>
+                        <td>Pragya</td>
+                        <td>Jury</td>
+                        <td>1/12/2018</td>
+                        <td>2/12/2018</td>
+                        <td>2</td>
+                        <td><input class="w3-check" type="checkbox"></td>
+                    </tr>
+                </table>
+            </div>
+            <button onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-black w3-section w3-right" type="submit">Submit</button>
+                                        <div id="id01" class="w3-modal">
+                                            <div class="w3-modal-content">
+                                                <div class="w3-container">
+                                                    <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+                                                    <p>Selected leaves have been approved and email has been sent to Employee(s).</p>
+                                                </div>
+                                            </div>
+                                        </div>
+        </div>
+    </div>
+</div>
+<!-- Footer -->
+<footer class="w3-container w3-padding-10 w3-center w3-opacity">
+    <div class="w3-xlarge w3-padding-32">
+        <i class="fa fa-facebook-official w3-hover-opacity"></i>
+        <i class="fa fa-instagram w3-hover-opacity"></i>
+        <i class="fa fa-snapchat w3-hover-opacity"></i>
+        <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+        <i class="fa fa-twitter w3-hover-opacity"></i>
+        <i class="fa fa-linkedin w3-hover-opacity"></i>
+    </div>
+</footer>
+
+
+
+</body>
+</html>
