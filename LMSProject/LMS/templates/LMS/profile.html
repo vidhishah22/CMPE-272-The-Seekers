@@ -1,8 +1,7 @@
 <!DOCTYPE html>
-{% block content %}
 <html>
 <head>
-    <title>Leave Management System</title>
+    <title>Profile</title>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,50 +17,11 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 </head>
 <body>
 
-<!-- Navbar -->
-<div class="w3-top">
-    <div class="w3-bar w3-blue w3-card w3-left-align w3-large">
-        <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
-        <a href="#home" class="w3-bar-item w3-button w3-padding-large w3-white">Home</a>
-        <a href="#profile" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Profile</a>
-        <a href="#applyforleave" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Apply For Leave</a>
-        <a href="#approveleave" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Approve Leave</a>
-        <a href="#editemployee" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Add/Edit/Delete Employee</a>
-        <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Log Out</a>
-    </div>
-
-    <!-- Navbar on small screens -->
-    <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
-        <a href="#home" class="w3-bar-item w3-button w3-padding-large">Home</a>
-        <a href="#profile" class="w3-bar-item w3-button w3-padding-large">Profile</a>
-        <a href="#applyforleave" class="w3-bar-item w3-button w3-padding-large">Apply For Leave</a>
-        <a href="#approveleave" class="w3-bar-item w3-button w3-padding-large">Approve Leave</a>
-        <a href="#editemployee" class="w3-bar-item w3-button w3-padding-large">Add/Edit/Delete Employee</a>
-        <a href="#" class="w3-bar-item w3-button w3-padding-large">Log Out</a>
-    </div>
-
-
-</div>
-
-<!-- Header -->
-<header class="w3-container w3-blue w3-center" style="padding:128px 16px" id="home">
-    <h1 class="w3-margin w3-jumbo">Home Page</h1>
-    <p class="w3-xlarge">Welcome to the Leave Management System</p>
-
-    <p class="w3-large">
-        "Name of Employee: {{ employees.First_Name }} - Employee ID: {{ employees.Emp_No }}"
-    </p>
-
-    <p class="w3-large">"Designation"</p>
-    <p class="w3-medium">For any question/issue, please don't hesitate to contact HR support.</p>
-    <!--button class="w3-button w3-black w3-padding-large w3-large w3-margin-top">Get Started</button-->
-</header>
-
-<!-- Page content -->
-<div class="w3-content w3-padding" style="max-width:1564px">
+<!-- Page content
+<div class="w3-content w3-padding" style="max-width:1564px"> -->
 
     <!-- Profile Content -->
-    <div class="w3-container w3-padding-32" id="profile">
+    <div class="w3-row-padding w3-container w3-light-grey w3-padding-30" id="profile">
 
         <div class="w3-content">
             <div class="w3-twothird">
@@ -74,17 +34,17 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
                             <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
                                 <div class="w3-half">
                                     <p class="w3-small">Street Address</p>
-                                    <input class="w3-input w3-border" type="text" placeholder="Street Address" required name="Street Address" value="hello" readonly>
+                                    <input class="w3-input w3-border" type="text" placeholder="Street Address" required name="Street Address" value={{employees.Street_Address}} readonly>
                                 </div>
                                 <div class="w3-half">
                                     <p class="w3-small">Address2</p>
-                                    <input class="w3-input w3-border" type="text" placeholder="Address2" required name="Address2" value="hello" readonly>
+                                    <input class="w3-input w3-border" type="text" placeholder="Address2" required name="Address2" value={{employees.Address2}} readonly>
                                 </div>
                             </div>
                             <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
                                 <div class="w3-half">
                                     <p class="w3-small">City</p>
-                                    <input class="w3-input w3-border" type="text" placeholder="City" required name="City" value="hello" readonly>
+                                    <input class="w3-input w3-border" type="text" placeholder="City" required name="City" value={{employees.City}} readonly>
                                 </div>
                                 <div class="w3-half">
                                     <p class="w3-small">State/Region/Province</p>
@@ -128,350 +88,11 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
         </div>
     </div>
 
-    <!-- Apply For Leave Grid -->
-    <div class="w3-row-padding w3-light-grey w3-padding-64 w3-container" id="applyforleave">
-        <div class="w3-content">
-            <div class="w3-twothird">
-                <h1>Apply For Leave</h1>
-                <div class="w3-row w3-padding-32">
-                    <div class="w3-col m12">
-                        <div action="/action_page.php" target="_blank">
-                            <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
-                                <div class="w3-half">
-                                    <div class="w3-bar w3-black">
-                                        <p><button class="w3-bar-item w3-button w3-hover-blue w3-large" onclick="openLeave('Request Leave')"> Request Leave </button></p>
-                                        <p><button class="w3-bar-item w3-button w3-hover-blue w3-large" onclick="openLeave('Leave History')"> Leave History </button></p>
-                                    </div>
-                                    <!-- <p class="w3-small">Absence Type</p> -->
-                                    <!-- <input class="w3-input w3-border" type="text" placeholder="Absence Type" name="Absence Type" required> -->
-                                    <div class="w3-row w3-padding-32 RequestLeave" id="Request Leave">
-                                        <h4>Request Leave</h4>
-                                        <form class="w3-container w3-margin-top w3-card-4" action="/action_page.php">
-                                            <select class="w3-select" name="option">
-                                                <option value="" disabled selected>Choose Leave Type</option>
-                                                <option value="1">Personal</option>
-                                                <option value="2">Annual</option>
-                                                <option value="3">Military</option>
-                                                <option value="3">Pregnancy Disability</option>
-                                            </select>
-                                        </form>
-                                        <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
-                                            <div class="w3-half">
-                                                <p class="w3-small"><label> <i class="fa fa-calendar-check-o"></i> Begin Date </label></p>
-                                                <input class="w3-input w3-border" type="number" placeholder="DD MM YYYY" name="Begin Date" required>
-                                            </div>
-                                        </div>
-                                        <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
-                                            <div class="w3-half">
-                                                <p class="w3-small"><label> <i class="fa fa-calendar-check-o"></i> End Date </label></p>
-                                                <input class="w3-input w3-border" type="number" placeholder="DD MM YYYY" name="End Date" required>
-                                            </div>
-                                        </div>
-                                        <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
-                                            <div class="w3-half">
-                                                <p class="w3-small">Available Days :</p>
-                                            </div>
-                                        </div>
-                                        <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
-                                            <div class="w3-half">
-                                                <p class="w3-small">Requesting Days :</p>
-                                            </div>
-                                        </div>
-                                        <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
-                                            <div class="w3-half">
-                                                <p class="w3-small">Reason/Comments</p>
-                                                <input class="w3-input w3-border" type="text" placeholder="Add Comments" name="Reason/Comments" required>
-                                            </div>
-                                        </div>
-                                        <button onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-black w3-section w3-left" type="submit">Submit</button>
-                                        <div id="id01" class="w3-modal">
-                                            <div class="w3-modal-content">
-                                                <div class="w3-container">
-                                                    <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
-                                                    <p>Your request for leave has been successfully sent for approval</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Leave History -->
-                    <div class="w3-container">
-                        <div class="w3-row w3-padding-32 RequestLeave" id="Leave History" style="display:none">
-                            <!--div class="w3-row-padding w3-margin-top" style="margin:0 -16px 8px -16px"-->
-                            <h4>Leave History</h4>
-                            <table class="w3-table-all">
-                                <thead>
-                                <tr class="w3-blue">
-                                    <th>Absence Type</th>
-                                    <th>Begin Date</th>
-                                    <th>End Date</th>
-                                    <th>Requested Days</th>
-                                    <th>Request Status</th>
-                                    <th>Cancel Leave</th>
-                                </tr>
-                                </thead>
-                                <tr>
-                                    <td>Vacation</td>
-                                    <td>04/07/2018</td>
-                                    <td>07/07/2018</td>
-                                    <td>4</td>
-                                    <td>Approved</td>
-                                    <!-- <td><input class="w3-check" type="checkbox"></td> -->
-                                </tr>
-                                <tr>
-                                    <td>Jury</td>
-                                    <td>1/12/2018</td>
-                                    <td>2/12/2018</td>
-                                    <td>2</td>
-                                    <td>Waiting For Approval</td>
-                                    <td><input class="w3-check" type="checkbox"></td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<script>
-function openLeave(leave) {
-    var i;
-    var x = document.getElementsByClassName("RequestLeave");
-    for (i = 0; i < x.length; i++) {
-       x[i].style.display = "none";
-    }
-    document.getElementById(leave).style.display = "block";
-}
-</script>
-
-<!-- Approve Leave Grid -->
 
 
-<div class="w3-row-padding w3-padding-64" id="approveleave">
-
-    <div class="w3-content">
-        <div class="w3-container">
-            <div class="w3-row-padding w3-margin-top" style="margin:0 -16px 8px -16px">
-                <h1>Approve Leave</h1>
-                <table class="w3-table-all">
-                    <thead>
-                    <tr class="w3-blue">
-                        <th>Name</th>
-                        <th>Reason</th>
-                        <th>Begin Date</th>
-                        <th>End Date</th>
-                        <th>Requested Days</th>
-                        <th>Selected</th>
-                    </tr>
-                    </thead>
-                    <tr>
-                        <td>Vacation</td>
-                        <td>04/07/2018</td>
-                        <td>07/07/2018</td>
-                        <td>4</td>
-                        <td>Approved</td>
-                        <!-- <td><input class="w3-check" type="checkbox"></td> -->
-                    </tr>
-                    <tr>
-                        <td>Jury</td>
-                        <td>1/12/2018</td>
-                        <td>2/12/2018</td>
-                        <td>2</td>
-                        <td>Waiting For Approval</td>
-                        <td><input class="w3-check" type="checkbox"></td>
-                    </tr>
-                </table>
-            </div>
-            <button onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-black w3-section w3-right" type="submit">Submit</button>
-                                        <div id="id01" class="w3-modal">
-                                            <div class="w3-modal-content">
-                                                <div class="w3-container">
-                                                    <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
-                                                    <p>Selected leaves have been approved and email has been sent to Employee(s).</p>
-                                                </div>
-                                            </div>
-                                        </div>
-        </div>
-    </div>
-</div>
-
-<!-- Add/Edit/Delete Employee Grid -->
-<div class="w3-row-padding w3-light-grey w3-padding-64 w3-container" id="editemployee">
-    <div class="w3-content">
-        <div class="w3-twothird">
-            <h1>Add/Update/Delete Employee</h1>
-
-            <div class="w3-row w3-padding-32">
-
-                <div class="w3-col m12">
-                    <form action="/action_page.php" target="_blank">
-                        <div class="w3-bar w3-black">
-                            <p><button class="w3-bar-item w3-button w3-hover-blue w3-large" onclick="openEmployee('Add Employee')"> Add Employee </button></p>
-                            <p><button class="w3-bar-item w3-button w3-hover-blue w3-large" onclick="openEmployee('Update Employee')"> Update Employee </button></p>
-                            <p><button class="w3-bar-item w3-button w3-hover-blue w3-large" onclick="openEmployee('Delete Employee')"> Delete Employee </button></p>
-                        </div>
-                        <div class="w3-row w3-padding-32 addEmp" id="Add Employee">
-                            <h4>Add Employee</h4>
-                            <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
-                                <div class="w3-half">
-                                    <p class="w3-small">Street Address</p>
-                                    <input class="w3-input w3-border" type="text" placeholder="Street Address" required name="Street Address" required>
-                                </div>
-                                <div class="w3-half">
-                                    <p class="w3-small">Address2</p>
-                                    <input class="w3-input w3-border" type="text" placeholder="Address2" required name="Address2">
-                                </div>
-                            </div>
-                            <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
-                                <div class="w3-half">
-                                    <p class="w3-small">City</p>
-                                    <input class="w3-input w3-border" type="text" placeholder="City" required name="City" required>
-                                </div>
-                                <div class="w3-half">
-                                    <p class="w3-small">State/Region/Province</p>
-                                    <input class="w3-input w3-border" type="text" placeholder="State/Region/Province" required name="State/Region/Province" required>
-                                </div>
-                            </div>
-                            <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
-                                <div class="w3-half">
-                                    <p class="w3-small">Zip Code</p>
-                                    <input class="w3-input w3-border" type="text" placeholder="Zip Code" required name="Zip Code" required>
-                                </div>
-                                <div class="w3-half">
-                                    <p class="w3-small">Country</p>
-                                    <input class="w3-input w3-border" type="text" placeholder="Country" required name="Country" required>
-                                </div>
-                            </div>
-                            <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
-                                <div class="w3-half">
-                                    <p class="w3-small">Email Address</p>
-                                    <input class="w3-input w3-border" type="text" placeholder="Email Address" required name="Email Address" required>
-                                </div>
-                                <div class="w3-half">
-                                    <p class="w3-small">Phone Number</p>
-                                    <input class="w3-input w3-border" type="text" placeholder="Phone Number" required name="Phone Number" required>
-                                </div>
-                            </div>
-                            <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
-                                <div class="w3-half">
-                                    <p class="w3-small">Salary</p>
-                                    <input class="w3-input w3-border" type="text" placeholder="Salary" required name="Salary" required>
-                                </div>
-                                <div class="w3-half">
-                                    <p class="w3-small">Date of Joining</p>
-                                    <input class="w3-input w3-border" type="text" placeholder="Date of Joining" required name="Date of Joining" required>
-                                </div>
-                            </div>
-                        </div>
-                        <button class="w3-button w3-black w3-section w3-right" type="submit">Add</button>
-
-                        <div>
-                            <!-- Update Employee Grid -->
-                            <div class="w3-row w3-padding-32 addEmp" id="Update Employee" style="display:none">
-                                <h4>Update Employee</h4>
-
-                                <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
-                                    <div class="w3-half">
-                                        <p class="w3-small">Street Address</p>
-                                        <input class="w3-input w3-border" type="text" placeholder="Street Address" required name="Street Address">
-                                    </div>
-                                    <div class="w3-half">
-                                        <p class="w3-small">Address2</p>
-                                        <input class="w3-input w3-border" type="text" placeholder="Address2" required name="Address2">
-                                    </div>
-                                </div>
-                                <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
-                                    <div class="w3-half">
-                                        <p class="w3-small">City</p>
-                                        <input class="w3-input w3-border" type="text" placeholder="City" required name="City">
-                                    </div>
-                                    <div class="w3-half">
-                                        <p class="w3-small">State/Region/Province</p>
-                                        <input class="w3-input w3-border" type="text" placeholder="State/Region/Province" required name="State/Region/Province">
-                                    </div>
-                                </div>
-                                <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
-                                    <div class="w3-half">
-                                        <p class="w3-small">Zip Code</p>
-                                        <input class="w3-input w3-border" type="text" placeholder="Zip Code" required name="Zip Code">
-                                    </div>
-                                    <div class="w3-half">
-                                        <p class="w3-small">Country</p>
-                                        <input class="w3-input w3-border" type="text" placeholder="Country" required name="Country">
-                                    </div>
-                                </div>
-                                <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
-                                    <div class="w3-half">
-                                        <p class="w3-small">Email Address</p>
-                                        <input class="w3-input w3-border" type="text" placeholder="Email Address" required name="Email Address">
-                                    </div>
-                                    <div class="w3-half">
-                                        <p class="w3-small">Phone Number</p>
-                                        <input class="w3-input w3-border" type="text" placeholder="Phone Number" required name="Phone Number">
-                                    </div>
-                                </div>
-                                <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
-                                    <div class="w3-half">
-                                        <p class="w3-small">Salary</p>
-                                        <input class="w3-input w3-border" type="text" placeholder="Salary" required name="Salary">
-                                    </div>
-                                    <div class="w3-half">
-                                        <p class="w3-small">Date of Joining</p>
-                                        <input class="w3-input w3-border" type="text" placeholder="Date of Joining" required name="Date of Joining">
-                                    </div>
-                                    <div class="w3-half">
-                                        <p class="w3-small">Manager</p>
-                                        <input class="w3-input w3-border" type="text" placeholder="Manager" required name="Manager">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <button class="w3-button w3-black w3-section w3-right" type="submit">Update</button>
-
-
-                        <!-- Delete Employee Grid -->
-                        <div class="w3-row w3-padding-32 addEmp" id="Delete Employee" style="display:none">
-                            <h4>Delete Employee</h4>
-
-                            <p class="w3-small">Employee ID</p>
-                            <input class="w3-input w3-border" type="text" placeholder="Employee ID" required name="Employee ID">
-                            <button class="w3-button w3-black w3-section w3-right" type="submit">Search</button>
-                            <input class="w3-input w3-border" type="text" placeholder="Display Employee Info- Name and Id" required name="Employee Name and ID">
-                            <button onclick="document.getElementById('id02').style.display='block'" class="w3-button w3-black w3-section w3-right" type="submit">Delete</button>
-                            <div id="id02" class="w3-modal">
-                                <div class="w3-modal-content">
-                                    <div class="w3-container">
-                                        <span onclick="document.getElementById('id02').style.display='none'" class="w3-button w3-display-topright">&times;</span>
-                                        <p>Employee has been deleted</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<script>
-function openEmployee(employee) {
-    var i;
-    var x = document.getElementsByClassName("addEmp");
-    for (i = 0; i < x.length; i++) {
-       x[i].style.display = "none";
-    }
-    document.getElementById(employee).style.display = "block";
-}
-</script>
 
 <!-- Footer -->
-<footer class="w3-container w3-padding-64 w3-center w3-opacity">
+<footer class="w3-container w3-padding-8 w3-center w3-opacity">
     <div class="w3-xlarge w3-padding-32">
         <i class="fa fa-facebook-official w3-hover-opacity"></i>
         <i class="fa fa-instagram w3-hover-opacity"></i>
@@ -480,7 +101,6 @@ function openEmployee(employee) {
         <i class="fa fa-twitter w3-hover-opacity"></i>
         <i class="fa fa-linkedin w3-hover-opacity"></i>
     </div>
-    <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
 </footer>
 
 
@@ -500,4 +120,3 @@ function myFunction() {
 
 </body>
 </html>
-{% endblock %}
