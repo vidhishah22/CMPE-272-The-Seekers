@@ -24,19 +24,8 @@ def base(request):
     return render(request, 'LMS/base.html', {'employees': employee_list})
 
 def profile(request):
-    #user=request.user
-    #auth0user=user.social_auth.get(provider="auth0")
-    userdata = {
-        #'user_id': JsonResponse(Employee.objects.raw("select First_Name from Employee where Emp_No=1 "),safe=False),
-        #'user_id': user.id,
-        #'name': user.first_name,
-        #'picture': auth0user.extra_data['picture']
-    }
-    #Email_id=Employee.object.filter(Email_Address_startswith=????)
-    #print(auth0user.extra_data['email'])
     employee_list = Employee.objects.get(Email_Address='ac.orci@seekers.ai')
     return render(request, 'LMS/profile.html', {'employees': employee_list})
-    #return render(request, 'index.html')
 
 def Home(request):
     employee_list = Employee.objects.get(Email_Address='ac.orci@seekers.ai')
@@ -50,9 +39,9 @@ def ApproveLeave(request):
     employee_list = Employee.objects.get(Email_Address='ac.orci@seekers.ai')
     return render(request, 'LMS/ApproveLeave.html', {'employees': employee_list})
 
-def EditEmployee1(request):
-    employee_list = Employee.objects.get(Email_Address='ac.orci@seekers.ai')
-    return render(request, 'LMS/EditEmployee.html', {'employees': employee_list})
+#def EditEmployee1(request):
+    #employee_list = Employee.objects.get(Email_Address='ac.orci@seekers.ai')
+    #return render(request, 'LMS/EditEmployee.html', {'employees': employee_list})
 
 def EditEmployee(request):
     if request.method == "POST":
