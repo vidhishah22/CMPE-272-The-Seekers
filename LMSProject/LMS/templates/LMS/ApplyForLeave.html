@@ -34,7 +34,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
                                     <!-- <input class="w3-input w3-border" type="text" placeholder="Absence Type" name="Absence Type" required> -->
                                     <div class="w3-row w3-padding-32 RequestLeave" id="Request Leave">
                                         <h4>Request Leave</h4>
-                                        <form class="w3-container w3-margin-top w3-card-4" action="/action_page.php">
+                                        <form class="w3-container w3-margin-top w3-card-4" action="ApplyForLeave"  method="post">
                                             <select class="w3-select" name="option">
                                                 <option value="" disabled selected>Choose Leave Type</option>
                                                 <option value="1">Personal</option>
@@ -42,7 +42,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
                                                 <option value="3">Military</option>
                                                 <option value="3">Pregnancy Disability</option>
                                             </select>
-                                        </form>
+
                                         <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
                                             <div class="w3-half">
                                                 <p class="w3-small"><label> <i class="fa fa-calendar-check-o"></i> Begin Date </label></p>
@@ -73,6 +73,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
                                             </div>
                                         </div>
                                         <button onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-black w3-section w3-left" type="submit">Submit</button>
+                                        </form>
                                         <div id="id01" class="w3-modal">
                                             <div class="w3-modal-content">
                                                 <div class="w3-container">

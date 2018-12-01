@@ -100,9 +100,28 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
                                     <input class="w3-input w3-border" type="date" placeholder="Date of Joining" required name="DOJ" required>
                                 </div>
                             </div>
-                            <button class="w3-button w3-black w3-section w3-right" type="submit">Add</button>
+
+                             <button onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-black w3-section w3-right" type="submit">Add</button>
+                                        <div id="id01" class="w3-modal">
+                                            <div class="w3-modal-content">
+                                                <div class="w3-container">
+                                                    <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+                                                    <p>Employee has been added to the database.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+                            <!--button class="w3-button w3-black w3-section w3-right" type="submit">Add</--button-->
                         </div>
                         </form>
+
+
+
+
+
+
                         <!-- Update Employee Grid -->
                         <div class="w3-row w3-padding-32 addEmp" id="Update Employee" style="display:none">
                             <h4>Update Employee</h4>
