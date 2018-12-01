@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+{% extends 'LMS/base.html' %}
+{% block content %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -44,13 +46,13 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
                                         <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
                                             <div class="w3-half">
                                                 <p class="w3-small"><label> <i class="fa fa-calendar-check-o"></i> Begin Date </label></p>
-                                                <input class="w3-input w3-border" type="number" placeholder="DD MM YYYY" name="Begin Date" required>
+                                                <input class="w3-input w3-border" type="date" placeholder="DD MM YYYY" name="Begin Date" required>
                                             </div>
                                         </div>
                                         <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
                                             <div class="w3-half">
                                                 <p class="w3-small"><label> <i class="fa fa-calendar-check-o"></i> End Date </label></p>
-                                                <input class="w3-input w3-border" type="number" placeholder="DD MM YYYY" name="End Date" required>
+                                                <input class="w3-input w3-border" type="date" placeholder="DD MM YYYY" name="End Date" required>
                                             </div>
                                         </div>
                                         <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
@@ -61,10 +63,11 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
                                         <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
                                             <div class="w3-half">
                                                 <p class="w3-small">Requesting Days :</p>
+                                                <input class="w3-input w3-border" type="number" value="1" name="Leaves Require" min="1" max="100">
                                             </div>
                                         </div>
                                         <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
-                                            <div class="w3-half">
+                                            <div class="w3-full">
                                                 <p class="w3-small">Reason/Comments</p>
                                                 <input class="w3-input w3-border" type="text" placeholder="Add Comments" name="Reason/Comments" required>
                                             </div>
@@ -86,7 +89,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
                     <!-- Leave History -->
                     <div class="w3-container">
                         <div class="w3-row w3-padding-32 RequestLeave" id="Leave History" style="display:none">
-                            <!--div class="w3-row-padding w3-margin-top" style="margin:0 -16px 8px -16px"-->
+                            <div class="w3-row-padding w3-margin-top" style="margin:0 -16px 8px -16px">
                             <h4>Leave History</h4>
                             <table class="w3-table-all">
                                 <thead>
@@ -151,3 +154,4 @@ function openLeave(leave) {
 
 </body>
 </html>
+{% endblock %}

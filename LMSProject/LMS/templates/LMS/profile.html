@@ -1,4 +1,7 @@
-<!DOCTYPE html>
+
+{% extends 'LMS/base.html' %}
+{% block content %}
+
 <html>
 <head>
     <title>Profile</title>
@@ -24,7 +27,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
     <div class="w3-row-padding w3-container w3-light-grey w3-padding-30" id="profile">
 
         <div class="w3-content">
-            <div class="w3-twothird">
+            <div class="w3-row w3-padding-32">
                 <h1>Profile</h1>
 
                 <div class="w3-row w3-padding-32">
@@ -107,3 +110,4 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 
 </body>
 </html>
+{% endblock %}

@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+{% extends 'LMS/base.html' %}
+
+
+{% block content %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -37,7 +41,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
                                 </div>
                                 <div class="w3-half">
                                     <p class="w3-small">Middle Name</p>
-                                    <input class="w3-input w3-border" type="text" placeholder="Middle Name" required name="MName" required>
+                                    <input class="w3-input w3-border" type="text" placeholder="Middle Name" name="MName">
                                 </div>
                                 <div class="w3-half">
                                     <p class="w3-small">Last Name</p>
@@ -45,7 +49,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
                                 </div>
                                 <div class="w3-half">
                                     <p class="w3-small">Date Of Birth</p>
-                                    <input class="w3-input w3-border" type="text" placeholder="Date Of Birth" required name="DOB" required>
+                                    <input class="w3-input w3-border" type="date" placeholder="Date Of Birth" required name="DOB" required>
                                 </div>
                                 <div class="w3-half">
                                     <p class="w3-small">Street Address</p>
@@ -93,7 +97,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
                                 </div>
                                 <div class="w3-half">
                                     <p class="w3-small">Date of Joining</p>
-                                    <input class="w3-input w3-border" type="text" placeholder="Date of Joining" required name="DOJ" required>
+                                    <input class="w3-input w3-border" type="date" placeholder="Date of Joining" required name="DOJ" required>
                                 </div>
                             </div>
                             <button class="w3-button w3-black w3-section w3-right" type="submit">Add</button>
@@ -104,57 +108,57 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
                             <h4>Update Employee</h4>
 
                             <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+                                <form class="example" action="action_page.php">
+                                <input type="text" placeholder="Search.." name="search">
+                                <button type="submit"><i class="fa fa-search"></i></button>
+                                </form>
                                 <div class="w3-half">
                                     <p class="w3-small">Street Address</p>
-                                    <input class="w3-input w3-border" type="text" placeholder="Street Address" required name="Street Address" value='{{employees.Street_Address}}'>
+                                    <input class="w3-input w3-border" type="text" placeholder="Street Address" required name="Street Address">
                                 </div>
                                 <div class="w3-half">
                                     <p class="w3-small">Address2</p>
-                                    <input class="w3-input w3-border" type="text" placeholder="Address2" required name="Address2" value='{{employees.Address2}}'>
+                                    <input class="w3-input w3-border" type="text" placeholder="Address2" required name="Address2">
                                 </div>
                             </div>
                             <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
                                 <div class="w3-half">
                                     <p class="w3-small">City</p>
-                                    <input class="w3-input w3-border" type="text" placeholder="City" required name="City" value='{{employees.City}}'>
+                                    <input class="w3-input w3-border" type="text" placeholder="City" required name="City">
                                 </div>
                                 <div class="w3-half">
                                     <p class="w3-small">State</p>
-                                    <input class="w3-input w3-border" type="text" placeholder="State" required name="State" value='{{employees.State}}'>
+                                    <input class="w3-input w3-border" type="text" placeholder="State" required name="State">
                                 </div>
                             </div>
                             <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
                                 <div class="w3-half">
                                     <p class="w3-small">Postal Code</p>
-                                    <input class="w3-input w3-border" type="text" placeholder="Postal Code" required name="Postal Code" value='{{employees.Postal_Code}}'>
+                                    <input class="w3-input w3-border" type="text" placeholder="Postal Code" required name="Postal Code">
                                 </div>
                                 <div class="w3-half">
                                     <p class="w3-small">Country</p>
-                                    <input class="w3-input w3-border" type="text" placeholder="Country" required name="Country" value='{{employees.Country}}'>
+                                    <input class="w3-input w3-border" type="text" placeholder="Country" required name="Country">
                                 </div>
                             </div>
                             <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
                                 <div class="w3-half">
                                     <p class="w3-small">Email Address</p>
-                                    <input class="w3-input w3-border" type="text" placeholder="Email Address" required name="Email Address" value='{{employees.Email_Address}}'>
+                                    <input class="w3-input w3-border" type="text" placeholder="Email Address" required name="Email Address">
                                 </div>
                                 <div class="w3-half">
                                     <p class="w3-small">Mobile Number</p>
-                                    <input class="w3-input w3-border" type="text" placeholder="Mobile Number" required name="Mobile Number" value='{{employees.Mobile_Number}}'>
+                                    <input class="w3-input w3-border" type="text" placeholder="Mobile Number" required name="Mobile Number">
                                 </div>
                             </div>
                             <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
                                 <div class="w3-half">
                                     <p class="w3-small">Salary</p>
-                                    <input class="w3-input w3-border" type="text" placeholder="Salary" required name="Salary" value='{{employees.Salary}}'>
-                                </div>
-                                <div class="w3-half">
-                                    <p class="w3-small">Date of Joining</p>
-                                    <input class="w3-input w3-border" type="text" placeholder="Date of Joining" required name="Date of Joining" value='{{employees.Hire_Date}}'>
+                                    <input class="w3-input w3-border" type="text" placeholder="Salary" required name="Salary">
                                 </div>
                                 <div class="w3-half">
                                     <p class="w3-small">Manager</p>
-                                    <input class="w3-input w3-border" type="text" placeholder="Manager" required name="Manager" value='{{employees.Manager}}'>
+                                    <input class="w3-input w3-border" type="text" placeholder="Manager" required name="Manager">
                                 </div>
                             </div>
                         <button class="w3-button w3-black w3-section w3-right" type="submit">Update</button>
@@ -165,8 +169,12 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
                     <h4>Delete Employee</h4>
 
                     <p class="w3-small">Employee ID</p>
-                    <!---<input class="w3-input w3-border" type="text" placeholder="Employee ID" required name="Employee ID">
-                    <button class="w3-button w3-black w3-section w3-right" type="submit">Search</button>-->
+                            <form class="example"  action="action_page.php">
+                                <input type="text" placeholder="Search.." name="search">
+                                <button type="submit"><i class="fa fa-search"></i></button>
+
+                            </form>
+
                     <input class="w3-input w3-border" type="text" placeholder="Display Employee Info- Name and Id" required name="Emp_No">
                     <button  class="w3-button w3-black w3-section w3-right" type="submit">Delete</button>
                     <div id="id02" class="w3-modal">
@@ -216,3 +224,4 @@ function openEmployee(employee) {
 
 </body>
 </html>
+{% endblock %}

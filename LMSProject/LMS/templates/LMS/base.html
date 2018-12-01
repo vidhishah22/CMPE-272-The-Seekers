@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -17,26 +18,47 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 <!-- Navbar -->
 <div class="w3-top">
     <div class="w3-bar w3-blue w3-card w3-left-align w3-large">
-        <a class="w3-bar-item w3-button w3-padding-large w3-white">Home</a>
-        <a class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Profile</a>
-        <a class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Apply For Leave</a>
-        <a class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Approve Leave</a>
-        <a class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Add/Edit/Delete Employee</a>
+
+
+        <a href="{% url 'Home' %}" class="w3-bar-item w3-button w3-padding-large w3-white">Home</a>
+        <a href="{% url 'profile' %}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Profile</a>
+        <a href="{% url 'ApplyForLeave' %}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Apply For Leave</a>
+        <a href="{% url 'ApproveLeave' %}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Approve Leave</a>
+        <a href="{% url 'EditEmployee' %}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Add/Edit/Delete Employee</a>
         <a class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Log Out</a>
     </div>
 
-    <!-- Navbar on small screens -->
+    <!-- Navbar on small screens>
     <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
         <a class="w3-bar-item w3-button w3-padding-large">Home</a>
         <a class="w3-bar-item w3-button w3-padding-large">Profile</a>
         <a class="w3-bar-item w3-button w3-padding-large">Apply For Leave</a>
         <a class="w3-bar-item w3-button w3-padding-large">Approve Leave</a>
         <a class="w3-bar-item w3-button w3-padding-large">Add/Edit/Delete Employee</a>
-        <a class="w3-bar-item w3-button w3-padding-large">Log Out</a>
-    </div>
-
+        <a-- class="w3-bar-item w3-button w3-padding-large">Log Out</a>
+    </div-->
 
 </div>
+<div>
+
+    {% block content %}
+    {% endblock %}
+
+</div>
+
+
+<script>
+	// Script to open and close sidebar
+	function w3_open() {
+		document.getElementById("mySidebar").style.display = "block";
+		document.getElementById("myOverlay").style.display = "block";
+	}
+
+	function w3_close() {
+		document.getElementById("mySidebar").style.display = "none";
+		document.getElementById("myOverlay").style.display = "none";
+	}
+</script>
 
 </body>
 </html>

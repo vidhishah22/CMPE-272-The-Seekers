@@ -17,11 +17,7 @@ logging.basicConfig(format=fmt, level=lvl)
 logging.debug("Logging started on %s for %s" % (logging.root.name, logging.getLevelName(lvl)))
 
 def index(request):
-    return HttpResponse("Hello, World")
-
-def base(request):
-    employee_list = Employee.objects.get(Email_Address='ac.orci@seekers.ai')
-    return render(request, 'LMS/base.html', {'employees': employee_list})
+    return render(request, 'LMS/base.html')
 
 def profile(request):
     employee_list = Employee.objects.get(Email_Address='ac.orci@seekers.ai')
@@ -50,7 +46,7 @@ def EditEmployee(request):
                         Last_Name = request.POST['LName'], Birth_Date= request.POST['DOB'], Gender = "F", Street_Address=request.POST['StreetAddress'],
                         Address2=request.POST['Address2'], City=request.POST['City'], State=request.POST['State'],Postal_Code=request.POST['Zip'],Country=request.POST['Country'],
                         Mobile_Number=request.POST['PhoneNo'],
-                        Hire_Date="2002-01-15", End_Date="2004-01-15", Designation="Employee", Nationality= "IN",
+                        Hire_Date="2002-01-15", Designation="Employee", Nationality= "IN",
                         Worktype="Permanent",IsActive="True", Emp_No = random.randint(1,1000000))
             employee.save()
         else:
