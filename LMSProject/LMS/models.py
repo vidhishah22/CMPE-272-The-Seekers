@@ -28,7 +28,7 @@ class EmpLeaveRequestChoices(ChoiceEnum):
 
 class Employee(models.Model):
 
-    Emp_No = models.PositiveIntegerField(default=0,primary_key=True,help_text='Unique Emp no for employee table')
+    Emp_No = models.AutoField(primary_key=True,help_text='Unique Emp no for employee table')
     First_Name = models.CharField(max_length=14,help_text='employee first name')
     Middle_Name = models.CharField(max_length=14,null=True,help_text='employee middle name')
     Last_Name = models.CharField(max_length=14,help_text='employee last name')
@@ -55,7 +55,7 @@ class Employee(models.Model):
 
 class EmpLeaveRequest(models.Model):
 
-    EmpLeave_Req_ID = models.PositiveIntegerField(default=0,primary_key=True)
+    EmpLeave_Req_ID = models.AutoField(primary_key=True)
     Emp_ID = models.ForeignKey(Employee, on_delete=models.CASCADE, related_name="Emp_ID", default=0)
     Emp_FullName = models.CharField(max_length=50)
     Leave_Type = models.CharField(max_length=10, choices=EmpLeaveRequestChoices.choices())
@@ -73,7 +73,7 @@ class EmpLeaveRequest(models.Model):
 
 class LeaveBalance(models.Model):
 
-    LeaveBal_ID = models.PositiveIntegerField(default=0,primary_key=True)
+    LeaveBal_ID = models.AutoField(primary_key=True)
     Emp_No_LeaveBal = models.ForeignKey(Employee, on_delete=models.CASCADE)
     Leave_Type = models.CharField(max_length=10, choices=EmpLeaveRequestChoices.choices())
     Available_Days = models.PositiveIntegerField(default=0, help_text='Remaining/available leave days per employee')
@@ -85,7 +85,7 @@ class LeaveBalance(models.Model):
 
 
 class EmpMgrDept(models.Model):
-    Emp_MgrDept_ID = models.PositiveIntegerField(default=0,primary_key=True)
+    Emp_MgrDept_ID = models.AutoField(default=0,primary_key=True)
     Emp_No_EmpMgrDept = models.ForeignKey(Employee, on_delete=models.CASCADE,related_name='Emp_No_EmpMgrDept',default=0)
     Dept_ID = models.PositiveIntegerField(default=0)
     Manager_Emp_ID = models.ForeignKey(Employee, on_delete=models.CASCADE,related_name='Manager_Emp_ID',default=0)

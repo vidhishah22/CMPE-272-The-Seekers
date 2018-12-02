@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+
+
 {% extends 'LMS/base.html' %}
 {% block content %}
 <html lang="en">
@@ -18,114 +20,117 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 </head>
 <body>
 <div class="w3-row-padding w3-light-grey w3-padding-64 w3-container" id="applyforleave">
-        <div class="w3-content">
-            <div class="w3-twothird">
-                <h1>Apply For Leave</h1>
-                <div class="w3-row w3-padding-32">
-                    <div class="w3-col m12">
-                        <div action="/action_page.php" target="_blank">
-                            <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
-                                <div class="w3-half">
-                                    <div class="w3-bar w3-black">
-                                        <p><button class="w3-bar-item w3-button w3-hover-blue w3-large" onclick="openLeave('Request Leave')"> Request Leave </button></p>
-                                        <p><button class="w3-bar-item w3-button w3-hover-blue w3-large" onclick="openLeave('Leave History')"> Leave History </button></p>
-                                    </div>
-                                    <!-- <p class="w3-small">Absence Type</p> -->
-                                    <!-- <input class="w3-input w3-border" type="text" placeholder="Absence Type" name="Absence Type" required> -->
-                                    <div class="w3-row w3-padding-32 RequestLeave" id="Request Leave">
-                                        <h4>Request Leave</h4>
-                                        <form class="w3-container w3-margin-top w3-card-4" action="ApplyForLeave"  method="post">
-                                            <select class="w3-select" name="leaveOption">
-                                                <option value="" disabled selected>Choose Leave Type</option>
-                                                <option value="Personal">Personal</option>
-                                                <option value="Annual">Annual</option>
-                                                <option value="Military">Military</option>
-                                                <option value="Pregnancy Disability">Pregnancy Disability</option>
-                                            </select>
+    <div class="w3-content">
 
-                                        <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
-                                            <div class="w3-half">
-                                                <p class="w3-small"><label> <i class="fa fa-calendar-check-o"></i> Begin Date </label></p>
-                                                <input class="w3-input w3-border" type="date" placeholder="DD MM YYYY" name="BeginDate" required>
-                                            </div>
+        <h1>Apply For Leave</h1>
+        <div class="w3-row w3-padding-32">
+            <div class="w3-col m12">
+                <div action="/action_page.php" target="_blank">
+                    <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+                        <div class="w3-half">
+                            <div class="w3-bar w3-black">
+                                <p><button class="w3-bar-item w3-button w3-hover-blue w3-large" onclick="openLeave('Request Leave')"> Request Leave </button></p>
+                                <p><button class="w3-bar-item w3-button w3-hover-blue w3-large" onclick="openLeave('Leave History')"> Leave History </button></p>
+                            </div>
+                            <!-- <p class="w3-small">Absence Type</p> -->
+                            <!-- <input class="w3-input w3-border" type="text" placeholder="Absence Type" name="Absence Type" required> -->
+                            <div class="w3-row w3-padding-32 RequestLeave" id="Request Leave">
+                                <h4>Request Leave</h4>
+                                <form class="w3-container w3-margin-top w3-card-4" action="ApplyForLeave"  method="post">
+                                    <select class="w3-select" name="leaveOption">
+                                        <option value="" disabled selected>Choose Leave Type</option>
+                                        <option value="Personal">Personal</option>
+                                        <option value="Annual">Annual</option>
+                                        <option value="Military">Military</option>
+                                        <option value="Pregnancy Disability">Pregnancy Disability</option>
+                                    </select>
+
+                                    <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+                                        <div class="w3-half">
+                                            <p class="w3-small"><label> <i class="fa fa-calendar-check-o"></i> Begin Date </label></p>
+                                            <input class="w3-input w3-border" type="date" placeholder="DD MM YYYY" name="BeginDate" required>
                                         </div>
-                                        <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
-                                            <div class="w3-half">
-                                                <p class="w3-small"><label> <i class="fa fa-calendar-check-o"></i> End Date </label></p>
-                                                <input class="w3-input w3-border" type="date" placeholder="DD MM YYYY" name="EndDate" required>
-                                            </div>
+                                    </div>
+                                    <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+                                        <div class="w3-half">
+                                            <p class="w3-small"><label> <i class="fa fa-calendar-check-o"></i> End Date </label></p>
+                                            <input class="w3-input w3-border" type="date" placeholder="DD MM YYYY" name="EndDate" required>
                                         </div>
-                                        <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
-                                            <div class="w3-half">
-                                                <p class="w3-small">Available Days :</p>
-                                            </div>
+                                    </div>
+                                    <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+                                        <div class="w3-half">
+                                            <p class="w3-small">Available Days :</p>
                                         </div>
-                                        <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
-                                            <div class="w3-half">
-                                                <p class="w3-small">Requesting Days :</p>
-                                                <input class="w3-input w3-border" type="number" value="1" name="Days" min="1" max="100">
-                                            </div>
+                                    </div>
+                                    <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+                                        <div class="w3-half">
+                                            <p class="w3-small">Requesting Days :</p>
+                                            <input class="w3-input w3-border" type="number" value="1" name="Days" min="1" max="100">
                                         </div>
-                                        <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
-                                            <div class="w3-full">
-                                                <p class="w3-small">Reason/Comments</p>
-                                                <input class="w3-input w3-border" type="text" placeholder="Add Comments" name="Reason" required>
-                                            </div>
+                                    </div>
+                                    <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+                                        <div class="w3-full">
+                                            <p class="w3-small">Reason/Comments</p>
+                                            <input class="w3-input w3-border" type="text" placeholder="Add Comments" name="Reason" required>
                                         </div>
-                                        <button onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-black w3-section w3-left" type="submit">Submit</button>
-                                        </form>
-                                        <div id="id01" class="w3-modal">
-                                            <div class="w3-modal-content">
-                                                <div class="w3-container">
-                                                    <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
-                                                    <p>Your request for leave has been successfully sent for approval</p>
-                                                </div>
-                                            </div>
+                                    </div>
+                                    <button onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-black w3-section w3-left" type="submit">Submit</button>
+                                </form>
+                                <div id="id01" class="w3-modal">
+                                    <div class="w3-modal-content">
+                                        <div class="w3-container">
+                                            <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+                                            <p>Your request for leave has been successfully sent for approval</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- Leave History -->
-                    <div class="w3-container">
-                        <div class="w3-row w3-padding-32 RequestLeave" id="Leave History" style="display:none">
-                            <div class="w3-row-padding w3-margin-top" style="margin:0 -16px 8px -16px">
-                            <h4>Leave History {{type}}{{beginDate}}{{endDate}}{{days}}{{status}}</h4>
-                            <table class="w3-table-all">
-                                <thead>
-                                <tr class="w3-blue">
-                                    <th>Absence Type</th>
-                                    <th>Begin Date</th>
-                                    <th>End Date</th>
-                                    <th>Requested Days</th>
-                                    <th>Request Status</th>
-                                    <th>Cancel Leave</th>
-                                </tr>
-                                </thead>
-                                <tr>
-                                    <td>Vacation</td>
-                                    <td>04/07/2018</td>
-                                    <td>07/07/2018</td>
-                                    <td>4</td>
-                                    <td>Approved</td>
-                                    <!-- <td><input class="w3-check" type="checkbox"></td> -->
-                                </tr>
-                                <tr>
-                                    <td>Jury</td>
-                                    <td>1/12/2018</td>
-                                    <td>2/12/2018</td>
-                                    <td>2</td>
-                                    <td>Waiting For Approval</td>
-                                    <td><input class="w3-check" type="checkbox"></td>
-                                </tr>
-                            </table>
-                            </div>
+                </div>
+            </div>
+            <!-- Leave History -->
+            <div class="w3-container">
+                <div class="w3-row w3-padding-32 RequestLeave" id="Leave History" style="display:none">
+                    <div class="w3-row-padding w3-margin-top" style="margin:0 -16px 8px -16px">
+                        <div>
+                        <h4>Leave History</h4>
+                        <table class="w3-table-all" action="LeaveHistory"  method="post">
+                            <thead>
+                            <tr class="w3-blue">
+                                <th>Absence Type</th>
+                                <th>Begin Date</th>
+                                <th>End Date</th>
+                                <th>Requested Days</th>
+                                <th>Request Status</th>
+                                <th>Cancel Leave</th>
+
+                                {% for leaves in leavesArray %}
+
+                            <tr>
+                                <td>{{leaves.Leave_Type}}</td>
+                                <td>{{leaves.Begin_Date}}</td>
+                                <td>{{leaves.End_Date}}</td>
+                                <td>{{leaves.Requested_Days}}</td>
+                                <td>{{leaves.Leave_Status}}</td>
+                                <td><input class="w3-check w3-margin-left" type="checkbox"></td>
+                            </tr>
+                            </thead>
+                            {% endfor %}
+                        </table>
+                        <button onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-black w3-section w3-right" type="submit">Submit</button>
+                                <div id="id01" class="w3-modal">
+                                    <div class="w3-modal-content">
+                                        <div class="w3-container">
+                                            <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+                                            <p>Your leave has been cancelled</p>
+                                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </div>
 
 <script>

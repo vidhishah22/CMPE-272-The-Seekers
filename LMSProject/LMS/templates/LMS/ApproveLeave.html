@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 {% extends 'LMS/base.html' %}
 {% block content %}
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Approve Leave</title>
@@ -22,34 +22,37 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
     <div class="w3-content">
         <div class="w3-container" style="padding:96px 16px">
             <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
-                <h1>Approve Leave {{type}}{{beginDate}}{{endDate}}{{days}}{{name}}</h1>
-                <table class="w3-table-all">
+                <h1>Approve Leave</h1>
+                <table class="w3-table-all" action="ApproveLeave"  method="post">
                     <thead>
                     <tr class="w3-blue">
+                        <th style="display:none;">EmpLeave_Req_ID</th>
                         <th>Name</th>
                         <th>Reason</th>
+                        <th>Leave Type</th>
                         <th>Begin Date</th>
                         <th>End Date</th>
                         <th>Requested Days</th>
-                        <th>Selected</th>
-                    </tr>
-                    </thead>
-                    <tr>
-                        <td>Reetika</td>
-                        <td>Vacation</td>
-                        <td>04/07/2018</td>
-                        <td>07/07/2018</td>
-                        <td>4</td>
-                        <!-- <td><input class="w3-check" type="checkbox"></td> -->
-                    </tr>
-                    <tr>
-                        <td>Pragya</td>
-                        <td>Jury</td>
-                        <td>1/12/2018</td>
-                        <td>2/12/2018</td>
-                        <td>2</td>
-                        <td><input class="w3-check" type="checkbox"></td>
-                    </tr>
+                        <th>Approve</th>
+                        <th>Decline</th>
+                    {% for leaves2 in leavesArray2 %}
+                            <tr>
+                                <form class="w3-container w3-margin-top w3-card-4" action="ApproveLeave"  method="post">
+                                <td>{{leaves2.Emp_FullName}}</td>
+                                <td>{{leaves2.Emp_Comments}}</td>
+                                <td>{{leaves2.Leave_Type}}</td>
+                                <td>{{leaves2.Begin_Date}}</td>
+                                <td>{{leaves2.End_Date}}</td>
+                                <td>{{leaves2.Requested_Days}}</td>
+                                <!--<td><input class="w3-check w3-margin-left" type="radio"></td>
+                                <td><input class="w3-check w3-margin-left" type="radio"></td>
+                                -->
+                                <td><input type="submit" formaction="ApproveLeave?approveList={{leaves2.EmpLeave_Req_ID}}" value="Approve"/></td>
+                                <td><input type="submit" formaction="ApproveLeave?declineList={{leaves2.EmpLeave_Req_ID}}" value="Decline"/></td>
+                                </form>
+                            </tr>
+                                </thead>
+                                {% endfor %}
                 </table>
             </div>
             <button onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-black w3-section w3-right" type="submit">Submit</button>
@@ -57,13 +60,38 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
                                             <div class="w3-modal-content">
                                                 <div class="w3-container">
                                                     <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
-                                                    <p>Selected leaves have been approved and email has been sent to Employee(s).</p>
+                                                    <p>Selected leaves have been Approved or Declined and email has been sent to Employee(s).</p>
                                                 </div>
                                             </div>
                                         </div>
         </div>
     </div>
 </div>
+
+<SCRIPT>
+function KeepCount() {
+
+var NewCount = 0
+
+if (document.joe.1.checked)
+{NewCount = NewCount + 1}
+
+if (document.joe.2.checked)
+{NewCount = NewCount + 1}
+
+if (NewCount == 2)
+{
+alert('Please select one option')
+document.joe; return false;
+}
+}
+</SCRIPT>
+
+
+
+
+
+
 <!-- Footer -->
 <footer class="w3-container w3-padding-10 w3-center w3-opacity">
     <div class="w3-xlarge w3-padding-32">
