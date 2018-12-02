@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 import json
-from LMS.models import Employee
+from LMS.models import Employee, LeaveBalance
 from LMS.models import EmpLeaveRequest
 from LMS.models import EmpMgrDept
 import time
@@ -42,7 +42,12 @@ def ApplyForLeave(request):
         empleaverequest.save()
         employeeFullName = empleaverequest.Emp_FullName
         send_mail('Leave approval request for ' + employeeFullName , 'Please access leave portal to approve leave request for '+ employeeFullName+ '.\nRequest Type: '+ request.POST['leaveOption'] + '\nReason: ' +request.POST['Reason'] +'\nFrom: ' +request.POST['BeginDate']+ '\nTo:' +request.POST['EndDate'], employee.Email_Address, [empMgrDept.Manager_Email_Address], fail_silently=False)
-    leavesArray = []
+    try:
+        leave_balance = LeaveBalance.objects.get(Emp_No_LeaveBal='10001', Leave_Type=request.GET['LeaveType'])
+    except:
+        leave_balance = LeaveBalance()
+        leave_balance.Available_Days = 0
+        leavesArray = []
     for e in EmpLeaveRequest.objects.filter(Emp_ID = employee):
         leaves = {}
         leaves['Leave_Type'] = e.Leave_Type
@@ -51,7 +56,7 @@ def ApplyForLeave(request):
         leaves['Requested_Days'] = e.Requested_Days
         leaves['Leave_Status'] = e.Leave_Status
         leavesArray.append(leaves)
-    return render(request, 'LMS/ApplyForLeave.html', {'employees': request, 'leavesArray': leavesArray})
+    return render(request, 'LMS/ApplyForLeave.html', {'employees': request, 'leavesArray': leavesArray,'leave_balance': leave_balance})
 
 def ApproveLeave(request):
     employee = Employee.objects.get(Email_Address='pragya.gautam@sjsu.edu')
