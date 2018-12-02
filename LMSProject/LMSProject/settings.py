@@ -120,28 +120,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# SOCIAL AUTH  AUTH0 BACKEND CONFIG
-SOCIAL_AUTH_TRAILING_SLASH = False
+# AUTH0 BACKEND CONFIG
 AUTH0_CLIENT_ID = 'LCTMUEpEUe9eV_0NWzAkUvkqF6cC19aT'
 AUTH0_CLIENT_SECRET = 'OfVy3Tj1iNgZ__opD2NEYym_H_XZqbZiHRPJrhkuK1wYWuygwrYhWB-zfWpu2oLo'
 AUTH0_DOMAIN = 'seekerslms.auth0.com'
 SERVER_URL ='localhost:8000'
 METADATA_NAMESPACE ='http://Lms.seekers.com/'
-SOCIAL_AUTH_AUTH0_DOMAIN = 'seekerslms.auth0.com'
-SOCIAL_AUTH_AUTH0_SCOPE = [
-    'openid',
-    'profile',
-    'email'
-]
-AUDIENCE = 'https://' + SOCIAL_AUTH_AUTH0_DOMAIN + '/userinfo'
-
-if AUDIENCE:
-    SOCIAL_AUTH_AUTH0_AUTH_EXTRA_ARGUMENTS = {'audience': AUDIENCE}
-AUTHENTICATION_BACKENDS = {
-    'LMS.auth0backend.Auth0',
-    'django.contrib.auth.backends.ModelBackend'
-}
-
 
 LOGIN_URL = "/LMS/login/auth0"
 LOGIN_REDIRECT_URL = "/LMS/profile"
