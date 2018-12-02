@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 import json
-from LMS.models import Employee
+from LMS.models import Employee, LeaveBalance
 from LMS.models import EmpLeaveRequest
 from LMS.models import EmpMgrDept
 import time
@@ -34,27 +34,38 @@ def Home(request):
     return render(request, 'LMS/Home.html', {'employees': employee_list})
 
 def ApplyForLeave(request):
-    employee = Employee.objects.get(Email_Address='sitharakmurthy@gmail.com')
-    empMgrDept = EmpMgrDept.objects.get(Emp_No_EmpMgrDept_id = employee)
-    manager = Employee.objects.get(Emp_No = empMgrDept.Manager_Emp_ID_id)
-    if request.method == "POST":
+    if request.method == "GET":
+        try:
+            leave_balance = LeaveBalance.objects.get(Emp_No_LeaveBal='10001', Leave_Type=request.GET['LeaveType'])
+        except:
+            leave_balance = LeaveBalance()
+            leave_balance.Available_Days = 0
+
+        return render(request, 'LMS/ApplyForLeave.html', {'leave_balance': leave_balance})
+
+    else:
+        employee = Employee.objects.get(Email_Address='sitharakmurthy@gmail.com')
+        empMgrDept = EmpMgrDept.objects.get(Emp_No_EmpMgrDept_id = employee)
+        manager = Employee.objects.get(Emp_No = empMgrDept.Manager_Emp_ID_id)
+
         empleaverequest = EmpLeaveRequest(Emp_ID_id = employee,Emp_FullName = empMgrDept.Emp_FullName,Leave_Type = request.POST['leaveOption'],Manager_Emp_No_id = manager,Manager_FullName = empMgrDept.Manager_FullName,Begin_Date = request.POST['BeginDate'],End_Date = request.POST['EndDate'],Requested_Days = request.POST['Days'],Leave_Status = "Pending",Emp_Comments = request.POST['Reason'])
         empleaverequest.save()
         employeeFullName = empleaverequest.Emp_FullName
         send_mail('Leave approval request for ' + employeeFullName , 'Please access leave portal to approve leave request for '+ employeeFullName+ '.\nRequest Type: '+ request.POST['leaveOption'] + "\nFrom: "+ request.POST['BeginDate']+ " \nTo:"+request.POST['EndDate'], employee.Email_Address, [empMgrDept.Manager_Email_Address], fail_silently=False)
-    type = []
-    beginDate = []
-    endDate = []
-    days = []
-    status = []
-    for e in EmpLeaveRequest.objects.filter(Emp_ID = "10001"):
-        type.append(e.Leave_Type)
-        beginDate.append(e.Begin_Date.strftime("%Y-%m-%d"))
-        endDate.append(e.End_Date.strftime("%Y-%m-%d"))
-        days.append(e.Requested_Days)
-        status.append(e.Leave_Status)
 
-    return render(request, 'LMS/ApplyForLeave.html', {'employees': request, 'type': type, 'beginDate': beginDate, 'endDate': endDate, 'days': days, 'status': status})
+        type = []
+        beginDate = []
+        endDate = []
+        days = []
+        status = []
+        for e in EmpLeaveRequest.objects.filter(Emp_ID = "10001"):
+            type.append(e.Leave_Type)
+            beginDate.append(e.Begin_Date.strftime("%Y-%m-%d"))
+            endDate.append(e.End_Date.strftime("%Y-%m-%d"))
+            days.append(e.Requested_Days)
+            status.append(e.Leave_Status)
+
+        return render(request, 'LMS/ApplyForLeave.html', {'employees': request, 'type': type, 'beginDate': beginDate, 'endDate': endDate, 'days': days, 'status': status})
 
 def ApproveLeave(request):
     employee_list = Employee.objects.get(Email_Address='vidhishah22@gmail.com')
