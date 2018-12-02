@@ -122,13 +122,17 @@ STATIC_URL = '/static/'
 
 # SOCIAL AUTH  AUTH0 BACKEND CONFIG
 SOCIAL_AUTH_TRAILING_SLASH = False
-SOCIAL_AUTH_AUTH0_KEY = 'LCTMUEpEUe9eV_0NWzAkUvkqF6cC19aT'
-SOCIAL_AUTH_AUTH0_SECRET = 'OfVy3Tj1iNgZ__opD2NEYym_H_XZqbZiHRPJrhkuK1wYWuygwrYhWB-zfWpu2oLo'
+AUTH0_CLIENT_ID = 'LCTMUEpEUe9eV_0NWzAkUvkqF6cC19aT'
+AUTH0_CLIENT_SECRET = 'OfVy3Tj1iNgZ__opD2NEYym_H_XZqbZiHRPJrhkuK1wYWuygwrYhWB-zfWpu2oLo'
+AUTH0_DOMAIN = 'seekerslms.auth0.com'
+SERVER_URL ='localhost:8000'
+METADATA_NAMESPACE ='http://Lms.seekers.com/'
+SOCIAL_AUTH_AUTH0_DOMAIN = 'seekerslms.auth0.com'
 SOCIAL_AUTH_AUTH0_SCOPE = [
     'openid',
-    'profile'
+    'profile',
+    'email'
 ]
-SOCIAL_AUTH_AUTH0_DOMAIN = 'seekerslms.auth0.com'
 AUDIENCE = 'https://' + SOCIAL_AUTH_AUTH0_DOMAIN + '/userinfo'
 
 if AUDIENCE:
@@ -140,5 +144,5 @@ AUTHENTICATION_BACKENDS = {
 
 
 LOGIN_URL = "/LMS/login/auth0"
-LOGIN_REDIRECT_URL = "/LMS/dashboard"
+LOGIN_REDIRECT_URL = "/LMS/profile"
 LOGOUT_REDIRECT_URL = "/"

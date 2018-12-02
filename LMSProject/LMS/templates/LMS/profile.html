@@ -24,10 +24,17 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
     <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
     <a href="#home" class="w3-bar-item w3-button w3-padding-large w3-white">Home</a>
     <a href="#profile" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Profile</a>
+      {% if role == 'Employee' or role == 'Manager' %}
     <a href="#applyforleave" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Apply For Leave</a>
+      {% endif %}
+      {% if role == 'HR' or role == 'Manager'%}
     <a href="#approveleave" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Approve Leave</a>
+      {% endif %}
+      {% if role == 'HR' %}
     <a href="#editemployee" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Add/Edit/Delete Employee</a>
-    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Log Out</a>
+      {% endif %}
+    <!--<a href="{% url 'logout' %}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Log Out</a>-->
+      <a href="/LMS/logout" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Log Out</a>
   </div>
 
   <!-- Navbar on small screens -->
@@ -49,10 +56,10 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
   <p class="w3-xlarge">Welcome to the Leave Management System</p>
 
     <p class="w3-large">
-      "Name of Employee: {{ employees.First_Name }} - Employee ID: {{ employees.Emp_No }}"
+      "Name of Employee: {{ employees.First_Name }} {{ employees.Last_Name }} - Employee ID: {{ employees.Emp_No }}"
     </p>
 
-  <p class="w3-large">"Designation"</p>
+  <p class="w3-large">{{ employees.Designation}}</p>
   <p class="w3-medium">For any question/issue, please don't hesitate to contact HR support.</p>
   <!--button class="w3-button w3-black w3-padding-large w3-large w3-margin-top">Get Started</button-->
 </header>

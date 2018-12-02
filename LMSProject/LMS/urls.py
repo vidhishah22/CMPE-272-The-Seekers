@@ -8,7 +8,9 @@ urlpatterns = [
     path('TheSeekers/getprofile', views.profile, name='profile'),
     #path('TheSeekers/', views.index, name='index'),
     #url('^$', views.index),
-    url(r'^dashboard', views.dashboard),
-    url(r'^', include(('django.contrib.auth.urls', 'auth'), namespace='auth')),
-    url(r'^', include(('social_django.urls', 'social'), namespace='social')),
+    url('login/', views.login),
+    url(r'^test', views.test),
+    url('complete/auth0', views.auth0),
+    url(r'^profile', views.profile),
+    url(r'^logout', views.logout, name='logout'),
 ]
