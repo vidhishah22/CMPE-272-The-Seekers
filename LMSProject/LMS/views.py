@@ -37,17 +37,32 @@ def ApplyForLeave(request):
     employee = Employee.objects.get(Email_Address='pragya.gautam.92@gmail.com')
     empMgrDept = EmpMgrDept.objects.get(Emp_No_EmpMgrDept_id = employee)
     manager = Employee.objects.get(Emp_No = empMgrDept.Manager_Emp_ID_id)
-    if request.method == "POST":
+    if (request.method == "POST") and (request.POST.get('leaveOption', '')!=""):
         empleaverequest = EmpLeaveRequest(Emp_ID = employee,Emp_FullName = empMgrDept.Emp_FullName,Leave_Type = request.POST['leaveOption'],Manager_Emp_No = manager,Manager_FullName = empMgrDept.Manager_FullName,Begin_Date = request.POST['BeginDate'],End_Date = request.POST['EndDate'],Requested_Days = request.POST['Days'],Leave_Status = "Pending",Emp_Comments = request.POST['Reason'])
         empleaverequest.save()
+        leave_balance = LeaveBalance.objects.get(Emp_No_LeaveBal=employee, Leave_Type=request.POST['leaveOption'])
+        leave_balance.Available_Days = leave_balance.Available_Days - int(empleaverequest.Requested_Days)
+        leave_balance.save()
         employeeFullName = empleaverequest.Emp_FullName
         send_mail('Leave approval request for ' + employeeFullName , 'Please access leave portal to approve leave request for '+ employeeFullName+ '.\nRequest Type: '+ request.POST['leaveOption'] + '\nReason: ' +request.POST['Reason'] +'\nFrom: ' +request.POST['BeginDate']+ '\nTo:' +request.POST['EndDate'], employee.Email_Address, [empMgrDept.Manager_Email_Address], fail_silently=False)
     try:
-        leave_balance = LeaveBalance.objects.get(Emp_No_LeaveBal='10001', Leave_Type=request.GET['LeaveType'])
+        leave_balance = LeaveBalance.objects.get(Emp_No_LeaveBal=employee, Leave_Type=request.GET.get('LeaveType', ''))
     except:
         leave_balance = LeaveBalance()
         leave_balance.Available_Days = 0
-        leavesArray = []
+
+    canceldLeave=request.GET.get('cancelLeave', '')
+    if(canceldLeave!=""):
+        empleaverequest = EmpLeaveRequest.objects.get(EmpLeave_Req_ID=canceldLeave)
+        empleaverequest.Leave_Status = 'Cancelled'
+        empleaverequest.save()
+        leave_balance = LeaveBalance.objects.get(Emp_No_LeaveBal=empleaverequest.Emp_ID, Leave_Type=empleaverequest.Leave_Type)
+        leave_balance.Available_Days = leave_balance.Available_Days + empleaverequest.Requested_Days
+        leave_balance.save()
+        send_mail('Leave cancelled', 'Your Leave has been cancelled by '+empleaverequest.Emp_FullName+".\nFrom: "+empleaverequest.Begin_Date.strftime("%Y-%m-%d")+"\nTo: "+ empleaverequest.End_Date.strftime("%Y-%m-%d"), employee.Email_Address, [employee.Email_Address,empMgrDept.Manager_Email_Address],fail_silently=False)
+
+
+    leavesArray = []
     for e in EmpLeaveRequest.objects.filter(Emp_ID = employee):
         leaves = {}
         leaves['Leave_Type'] = e.Leave_Type
@@ -55,6 +70,12 @@ def ApplyForLeave(request):
         leaves['End_Date'] = e.End_Date.strftime("%Y-%m-%d")
         leaves['Requested_Days'] = e.Requested_Days
         leaves['Leave_Status'] = e.Leave_Status
+        leaves['Leave_Id'] = e.EmpLeave_Req_ID
+        if(e.Leave_Status == 'Pending'):
+            leaves['Display'] = 'inline'
+        else:
+            leaves['Display'] = 'none'
+
         leavesArray.append(leaves)
     return render(request, 'LMS/ApplyForLeave.html', {'employees': request, 'leavesArray': leavesArray,'leave_balance': leave_balance})
 
@@ -72,10 +93,13 @@ def ApproveLeave(request):
         empleaverequest = EmpLeaveRequest.objects.get(EmpLeave_Req_ID=declinedLeaves)
         empleaverequest.Leave_Status = 'Declined'
         empleaverequest.save()
+        leave_balance = LeaveBalance.objects.get(Emp_No_LeaveBal=empleaverequest.Emp_ID, Leave_Type=empleaverequest.Leave_Type)
+        leave_balance.Available_Days = leave_balance.Available_Days + empleaverequest.Requested_Days
+        leave_balance.save()
         send_mail('Leave declined', 'Your Leave has been declined by '+empleaverequest.Manager_FullName+".\nFrom: "+empleaverequest.Begin_Date.strftime("%Y-%m-%d")+"\nTo: "+ empleaverequest.End_Date.strftime("%Y-%m-%d"), employee.Email_Address, [employee.Email_Address],fail_silently=False)
 
     leavesArray2 = []
-    for e in EmpLeaveRequest.objects.filter(Manager_Emp_No = employee):
+    for e in EmpLeaveRequest.objects.filter(Manager_Emp_No = employee, Leave_Status = 'Pending'):
         leaves2 = {}
         leaves2['EmpLeave_Req_ID'] = e.EmpLeave_Req_ID
         leaves2['Emp_FullName'] = e.Emp_FullName
