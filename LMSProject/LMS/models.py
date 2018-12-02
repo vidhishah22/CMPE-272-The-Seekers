@@ -24,7 +24,6 @@ class EmpLeaveRequestChoices(ChoiceEnum):
     Pending_Status = 'Pending'
     Approved_Status = 'Approved'
     Declined_Status = 'Declined'
-    Cancelled_Status = 'Cancelled'
 
 
 class Employee(models.Model):

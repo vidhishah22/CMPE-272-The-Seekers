@@ -35,24 +35,24 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
                                     <div class="w3-row w3-padding-32 RequestLeave" id="Request Leave">
                                         <h4>Request Leave</h4>
                                         <form class="w3-container w3-margin-top w3-card-4" action="ApplyForLeave"  method="post">
-                                            <select class="w3-select" name="option">
+                                            <select class="w3-select" name="leaveOption">
                                                 <option value="" disabled selected>Choose Leave Type</option>
-                                                <option value="1">Personal</option>
-                                                <option value="2">Annual</option>
-                                                <option value="3">Military</option>
-                                                <option value="3">Pregnancy Disability</option>
+                                                <option value="Personal">Personal</option>
+                                                <option value="Annual">Annual</option>
+                                                <option value="Military">Military</option>
+                                                <option value="Pregnancy Disability">Pregnancy Disability</option>
                                             </select>
 
                                         <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
                                             <div class="w3-half">
                                                 <p class="w3-small"><label> <i class="fa fa-calendar-check-o"></i> Begin Date </label></p>
-                                                <input class="w3-input w3-border" type="date" placeholder="DD MM YYYY" name="Begin Date" required>
+                                                <input class="w3-input w3-border" type="date" placeholder="DD MM YYYY" name="BeginDate" required>
                                             </div>
                                         </div>
                                         <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
                                             <div class="w3-half">
                                                 <p class="w3-small"><label> <i class="fa fa-calendar-check-o"></i> End Date </label></p>
-                                                <input class="w3-input w3-border" type="date" placeholder="DD MM YYYY" name="End Date" required>
+                                                <input class="w3-input w3-border" type="date" placeholder="DD MM YYYY" name="EndDate" required>
                                             </div>
                                         </div>
                                         <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
@@ -63,13 +63,13 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
                                         <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
                                             <div class="w3-half">
                                                 <p class="w3-small">Requesting Days :</p>
-                                                <input class="w3-input w3-border" type="number" value="1" name="Leaves Require" min="1" max="100">
+                                                <input class="w3-input w3-border" type="number" value="1" name="Days" min="1" max="100">
                                             </div>
                                         </div>
                                         <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
                                             <div class="w3-full">
                                                 <p class="w3-small">Reason/Comments</p>
-                                                <input class="w3-input w3-border" type="text" placeholder="Add Comments" name="Reason/Comments" required>
+                                                <input class="w3-input w3-border" type="text" placeholder="Add Comments" name="Reason" required>
                                             </div>
                                         </div>
                                         <button onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-black w3-section w3-left" type="submit">Submit</button>
@@ -91,7 +91,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
                     <div class="w3-container">
                         <div class="w3-row w3-padding-32 RequestLeave" id="Leave History" style="display:none">
                             <div class="w3-row-padding w3-margin-top" style="margin:0 -16px 8px -16px">
-                            <h4>Leave History</h4>
+                            <h4>Leave History {{type}}{{beginDate}}{{endDate}}{{days}}{{status}}</h4>
                             <table class="w3-table-all">
                                 <thead>
                                 <tr class="w3-blue">
