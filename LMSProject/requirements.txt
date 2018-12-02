@@ -3,6 +3,7 @@ psycopg2
 requests
 oauth2
 social-auth-app-django
+pyjwt
 python-jose
 six
 python-dotenv

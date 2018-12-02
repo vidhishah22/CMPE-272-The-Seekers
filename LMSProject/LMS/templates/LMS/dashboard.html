@@ -1,4 +1,4 @@
-{% extends 'layout.html' %}
+{% extends 'LMS/layout.html' %}
 
 {% block content %}
 <div class="login-page clearfix">
@@ -7,7 +7,7 @@
         <img class="avatar" src="{{ auth0User.extra_data.picture }}"/>
         <h2>Welcome {{ user.username }}</h2>
         <pre>{{ userdata }}</pre>
-        <a id="qsLogoutBtn" class="btn btn-primary btn-lg btn-logout btn-block" href="/logout">Logout</a>
+        <a id="qsLogoutBtn" class="btn btn-primary btn-lg btn-logout btn-block" href="/LMS/test">Logout</a>
     </div>
 </div>
 {% endblock content %}
