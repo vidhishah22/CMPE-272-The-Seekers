@@ -26,15 +26,15 @@ def index(request):
     return render(request, 'LMS/base.html')
 
 def profile(request):
-    employee_list = Employee.objects.get(Email_Address='pragya.gautam.92@gmail.com')
+    employee_list = Employee.objects.get(Email_Address='vidhishah438@gmail.com')
     return render(request, 'LMS/profile.html', {'employees': employee_list})
 
 def Home(request):
-    employee_list = Employee.objects.get(Email_Address='pragya.gautam.92@gmail.com')
+    employee_list = Employee.objects.get(Email_Address='vidhishah438@gmail.com')
     return render(request, 'LMS/Home.html', {'employees': employee_list})
 
 def ApplyForLeave(request):
-    employee = Employee.objects.get(Email_Address='pragya.gautam.92@gmail.com')
+    employee = Employee.objects.get(Email_Address='vidhishah438@gmail.com')
     empMgrDept = EmpMgrDept.objects.get(Emp_No_EmpMgrDept_id = employee)
     manager = Employee.objects.get(Emp_No = empMgrDept.Manager_Emp_ID_id)
     if (request.method == "POST") and (request.POST.get('leaveOption', '')!=""):
@@ -80,7 +80,7 @@ def ApplyForLeave(request):
     return render(request, 'LMS/ApplyForLeave.html', {'employees': request, 'leavesArray': leavesArray,'leave_balance': leave_balance})
 
 def ApproveLeave(request):
-    employee = Employee.objects.get(Email_Address='pragya.gautam@sjsu.edu')
+    employee = Employee.objects.get(Email_Address='vidhishah438@gmail.com')
     approvedLeaves = request.GET.get('approveList', '')
     declinedLeaves = request.GET.get('declineList', '')
 
