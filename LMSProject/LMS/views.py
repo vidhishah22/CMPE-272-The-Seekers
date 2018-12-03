@@ -34,15 +34,21 @@ def Home(request):
     return render(request, 'LMS/Home.html', {'employees': employee_list})
 
 def ApplyForLeave(request):
-    employee = Employee.objects.get(Email_Address='pragya.gautam.92@gmail.com')
-    empMgrDept = EmpMgrDept.objects.get(Emp_No_EmpMgrDept_id = employee)
+    employee = Employee.objects.get(Email_Address='nrkrishnamurthy05@gmail.com')
+    empMgrDept = EmpMgrDept.objects.get(Emp_No_EmpMgrDept = employee)
     manager = Employee.objects.get(Emp_No = empMgrDept.Manager_Emp_ID_id)
     if (request.method == "POST") and (request.POST.get('leaveOption', '')!=""):
-        empleaverequest = EmpLeaveRequest(Emp_ID = employee,Emp_FullName = empMgrDept.Emp_FullName,Leave_Type = request.POST['leaveOption'],Manager_Emp_No = manager,Manager_FullName = empMgrDept.Manager_FullName,Begin_Date = request.POST['BeginDate'],End_Date = request.POST['EndDate'],Requested_Days = request.POST['Days'],Leave_Status = "Pending",Emp_Comments = request.POST['Reason'])
+        requested_days = request.POST['Days']
+        leave_type = request.POST['leaveOption']
+        empleaverequest = EmpLeaveRequest(Emp_ID = employee,Emp_FullName = empMgrDept.Emp_FullName,Leave_Type = leave_type,Manager_Emp_No = manager,Manager_FullName = empMgrDept.Manager_FullName,Begin_Date=request.POST['BeginDate'], End_Date=request.POST['EndDate'],Requested_Days = requested_days,Leave_Status = "Pending",Emp_Comments = request.POST['Reason'])
         empleaverequest.save()
-        leave_balance = LeaveBalance.objects.get(Emp_No_LeaveBal=employee, Leave_Type=request.POST['leaveOption'])
-        leave_balance.Available_Days = leave_balance.Available_Days - int(empleaverequest.Requested_Days)
-        leave_balance.save()
+
+        current_leave_bal = LeaveBalance.objects.get(Emp_No_LeaveBal=employee, Leave_Type=leave_type)
+        new_avail_days = current_leave_bal.Available_Days - int(requested_days)
+
+        current_leave_bal.Available_Days = new_avail_days
+        current_leave_bal.save()
+
         employeeFullName = empleaverequest.Emp_FullName
         send_mail('Leave approval request for ' + employeeFullName , 'Please access leave portal to approve leave request for '+ employeeFullName+ '.\nRequest Type: '+ request.POST['leaveOption'] + '\nReason: ' +request.POST['Reason'] +'\nFrom: ' +request.POST['BeginDate']+ '\nTo:' +request.POST['EndDate'], employee.Email_Address, [empMgrDept.Manager_Email_Address], fail_silently=False)
     try:
