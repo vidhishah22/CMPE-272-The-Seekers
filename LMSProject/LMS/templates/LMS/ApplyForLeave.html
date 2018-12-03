@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="js/my.js"></script>
+    <!--<script src="js/my.js"></script>-->
     <style>
 body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 .w3-bar,h1,button {font-family: "Montserrat", sans-serif}
@@ -47,13 +47,13 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
                                         <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
                                             <div class="w3-half">
                                                 <p class="w3-small"><label> <i class="fa fa-calendar-check-o"></i> Begin Date </label></p>
-                                                <input class="w3-input w3-border" type="date" placeholder="DD MM YYYY" name="BeginDate" required>
+                                                <input class="w3-input w3-border" type="date" placeholder="DD MM YYYY" name="BeginDate" id="startDate">
                                             </div>
                                         </div>
                                         <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
                                             <div class="w3-half">
                                                 <p class="w3-small"><label> <i class="fa fa-calendar-check-o"></i> End Date </label></p>
-                                                <input class="w3-input w3-border" type="date" placeholder="DD MM YYYY" name="EndDate" required>
+                                                <input class="w3-input w3-border" type="date" placeholder="DD MM YYYY" name="EndDate" id="endDate" onchange="getRequestedDays()">
                                             </div>
                                         </div>
                                         <div class="w3-row-padding" name="availableDays" id="availableDays" style="margin:0 -16px 8px -16px">
@@ -65,29 +65,33 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
                                         <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
                                             <div class="w3-half">
                                                 <p class="w3-small">Requesting Days :</p>
-                                                <input class="w3-input w3-border" type="number" value="1" name="Days" min="1" max="100">
+                                                <input class="w3-input w3-border" id="requestedDays" type="number" value="1" name="Days" min="1" max="100">
                                             </div>
                                         </div>
                                         <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
                                             <div class="w3-full">
                                                 <p class="w3-small">Reason/Comments</p>
-                                                <input class="w3-input w3-border" type="text" placeholder="Add Comments" name="Reason" required>
+                                                <input class="w3-input w3-border" type="text" placeholder="Add Comments" id="Reason" name="Reason">
                                             </div>
                                         </div>
-                                        <button onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-black w3-section w3-left" type="submit">Submit</button>
+                                        <!--<button onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-black w3-section w3-left" type="submit">Submit</button> -->
+                                            <button onclick="return checkErrors()" class="w3-button w3-black w3-section w3-left" type="submit">Submit</button>
                                         </form>
-                                        <div id="id01" class="w3-modal">
+                                       <!-- <div id="id01" class="w3-modal">
                                             <div class="w3-modal-content">
                                                 <div class="w3-container">
                                                     <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
                                                     <p>Your request for leave has been successfully sent for approval</p>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div>-->
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="w3-half w3-top w3-margin-top w3-padding-64">
+                        <input id="errorBox" class="w3-input w3-border" type="text" style="visibility:hidden"/>
                     </div>
                     <!-- Leave History -->
             <div class="w3-container">
@@ -151,6 +155,67 @@ function getAvailableDays(leaveType) {
         }/*  end of error */
     });
 }
+
+function getRequestedDays() {
+    var startDate = document.getElementById("startDate").value
+    var endDate = document.getElementById("endDate").value
+    var date1 = new Date(startDate);
+    var date2 = new Date(endDate);
+    var timeDiff = Math.abs(date2.getTime() - date1.getTime());
+    var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+    document.getElementById("requestedDays").value = diffDays;
+}
+
+function checkErrors() {
+    var listErrors = []
+    var startDate = document.getElementById("startDate").value
+    var date1 = new Date(startDate);
+
+    if(startDate == "") {
+        listErrors.push("Start date can not be null");
+    } else {
+
+        var today = new Date();
+        today.setHours(0,0,0,0);
+        if(date1 < today) {
+            listErrors.push("Start date can not be less than today's date.");
+        }
+    }
+
+    var endDate = document.getElementById("endDate").value
+    if(endDate == "") {
+        listErrors.push("End date can not be null");
+    } else {
+        var date2 = new Date(endDate);
+        if(date2 < date1) {
+            listErrors.push("End date can not be less than start date.");
+        }
+    }
+
+    var comments = document.getElementById("Reason").value
+
+    if(comments == "") {
+        listErrors.push("Comments can not be null.");
+    }
+
+    var arrayLength = listErrors.length;
+
+    if(arrayLength == 0) {
+        alert("request submitted successfully");
+        return true;
+    } else {
+        for (var i = 0; i < arrayLength; i++) {
+        alert(listErrors[i]);
+        //Do something
+        }
+
+        return false;
+    }
+
+
+}
+
+
 </script>
 
 <!-- Footer -->
