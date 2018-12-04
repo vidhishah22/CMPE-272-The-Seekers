@@ -65,3 +65,21 @@ def hr(function):
     wrap.__doc__ = function.__doc__
     wrap.__name__ = function.__name__
     return wrap
+
+
+def hr_or_manager(function):
+    def wrap(request, *args, **kwargs):
+        if 'id_token' in request.session:
+            token = request.session['id_token']
+            userinfo = jwt.decode(token, verify=False)
+            if userinfo[settings.METADATA_NAMESPACE + 'app_metadata']['role'] == 'HR' or \
+                    userinfo[settings.METADATA_NAMESPACE + 'app_metadata']['role'] == 'Manager':
+                return function(request, *args, **kwargs)
+            else:
+                return HttpResponseRedirect('/LMS/login/')
+        else:
+            return HttpResponseRedirect('/LMS/login/')
+
+    wrap.__doc__ = function.__doc__
+    wrap.__name__ = function.__name__
+    return wrap

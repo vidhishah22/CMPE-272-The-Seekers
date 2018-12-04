@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
+.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+.fa-anchor,.fa-coffee {font-size:200px}
+</style>
+</head>
+<body>
+<!-- Navbar -->
+<div class="w3-top">
+    <div class="w3-bar w3-blue w3-card w3-left-align w3-large">
+
+
+        <a href="{% url 'Home' %}" class="w3-bar-item w3-button w3-padding-large w3-white">Home</a>
+        <a href="{% url 'profile' %}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Profile</a>
+        <a href="{% url 'ApplyForLeave' %}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Apply For Leave</a>
+        {% if role == 'HR' or role == 'Manager'%}
+        <a href="{% url 'ApproveLeave' %}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Approve Leave</a>
+        {% endif %}
+        <!--{% if role == 'HR' %}
+        a class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Add/Edit/Delete Employee
+        {% endif %}</a-->
+        <a href="{% url 'logout' %}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Log Out</a>
+    </div>
+
+    <!-- Navbar on small screens>
+    <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
+        <a class="w3-bar-item w3-button w3-padding-large">Home</a>
+        <a class="w3-bar-item w3-button w3-padding-large">Profile</a>
+        <a class="w3-bar-item w3-button w3-padding-large">Apply For Leave</a>
+        <a class="w3-bar-item w3-button w3-padding-large">Approve Leave</a>
+        <a class="w3-bar-item w3-button w3-padding-large">Add/Edit/Delete Employee</a>
+        <a-- class="w3-bar-item w3-button w3-padding-large">Log Out</a>
+    </div-->
+
+</div>
+<div>
+
+    {% block content %}
+    {% endblock %}
+
+</div>
+
+
+<script>
+	// Script to open and close sidebar
+	function w3_open() {
+		document.getElementById("mySidebar").style.display = "block";
+		document.getElementById("myOverlay").style.display = "block";
+	}
+
+	function w3_close() {
+		document.getElementById("mySidebar").style.display = "none";
+		document.getElementById("myOverlay").style.display = "none";
+	}
+</script>
+
+</body>
+</html>

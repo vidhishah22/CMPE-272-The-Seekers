@@ -27,6 +27,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'theseekers2018@gmail.com'
+EMAIL_HOST_PASSWORD = 'seekers123'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 
 # Application definition
 
@@ -127,6 +132,9 @@ AUTH0_DOMAIN = 'seekerslms.auth0.com'
 SERVER_URL ='localhost:8000'
 METADATA_NAMESPACE ='http://Lms.seekers.com/'
 
-LOGIN_URL = "/LMS/login/auth0"
-LOGIN_REDIRECT_URL = "/LMS/profile"
+LOGIN_URL = "/LMS/TheSeekers/login/auth0"
+LOGIN_REDIRECT_URL = "/LMS/TheSeekers/profile"
 LOGOUT_REDIRECT_URL = "/"
+
+LINKEDIN_CLIENTID ='86saa3nn59hs94'
+LINKEDIN_CLIENTSECRET = 'hs7YKkNgXXV2cjzi'
