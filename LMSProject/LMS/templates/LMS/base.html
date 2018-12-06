@@ -22,7 +22,9 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 
         <a href="{% url 'Home' %}" class="w3-bar-item w3-button w3-padding-large w3-white">Home</a>
         <a href="{% url 'profile' %}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Profile</a>
+        {% if role == 'Employee' or role == 'Manager'%}
         <a href="{% url 'ApplyForLeave' %}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Apply For Leave</a>
+        {% endif %}
         {% if role == 'HR' or role == 'Manager'%}
         <a href="{% url 'ApproveLeave' %}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Approve Leave</a>
         {% endif %}
