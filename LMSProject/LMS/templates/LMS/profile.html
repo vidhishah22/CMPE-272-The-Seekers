@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+{% extends 'LMS/base.html' %}
+{% block content %}
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
+.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+.fa-anchor,.fa-coffee {font-size:200px}
+</style>
+</head>
+<body>
+
+    <!-- Profile Content -->
+    <div class="w3-row-padding w3-container w3-light-grey w3-padding-30" id="profile">
+
+        <div class="w3-content">
+            <div class="w3-row w3-padding-32">
+                <h1>Profile</h1>
+
+                <div class="w3-row w3-padding-32">
+
+                    <div class="w3-col m12">
+                        <form action="/action_page.php" target="_blank">
+                            <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+                                <div class="w3-half">
+                                    <p class="w3-small">First Name</p>
+                                    <input class="w3-input w3-border" type="text" placeholder="First Name" required name="First Name" value='{{employees.First_Name}}' readonly>
+                                </div>
+                                <div class="w3-half">
+                                    <p class="w3-small">Last Name</p>
+                                    <input class="w3-input w3-border" type="text" placeholder="Last Name" required name="Last Name" value='{{employees.Last_Name}}' readonly>
+                                </div>
+                            </div>
+                            <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+                                <div class="w3-half">
+                                    <p class="w3-small">Street Address Line 1</p>
+                                    <input class="w3-input w3-border" type="text" placeholder="Street Address" required name="Street Address" value='{{employees.Street_Address}}' readonly>
+                                </div>
+                                <div class="w3-half">
+                                    <p class="w3-small">Street Address Line 2</p>
+                                    <input class="w3-input w3-border" type="text" placeholder="Address2" required name="Address2" value='{{employees.Address2}}' readonly>
+                                </div>
+                            </div>
+                            <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+                                <div class="w3-half">
+                                    <p class="w3-small">City</p>
+                                    <input class="w3-input w3-border" type="text" placeholder="City" required name="City" value='{{employees.City}}' readonly>
+                                </div>
+                                <div class="w3-half">
+                                    <p class="w3-small">State</p>
+                                    <input class="w3-input w3-border" type="text" placeholder="State" required name="State" value='{{employees.State}}' readonly>
+                                </div>
+                            </div>
+                            <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+                                <div class="w3-half">
+                                    <p class="w3-small">Postal Code</p>
+                                    <input class="w3-input w3-border" type="text" placeholder="Postal Code" required name="Postal Code" value='{{employees.Postal_Code}}' readonly>
+                                </div>
+                                <div class="w3-half">
+                                    <p class="w3-small">Country</p>
+                                    <input class="w3-input w3-border" type="text" placeholder="Country" required name="Country" value='{{employees.Country}}' readonly>
+                                </div>
+                            </div>
+                            <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+                                <div class="w3-half">
+                                    <p class="w3-small">Email Address</p>
+                                    <input class="w3-input w3-border" type="text" placeholder="Email Address" required name="Email Address" value='{{employees.Email_Address}}' readonly>
+                                </div>
+                                <div class="w3-half">
+                                    <p class="w3-small">Mobile Number</p>
+                                    <input class="w3-input w3-border" type="text" placeholder="Mobile Number" required name="Mobile Number" value='{{employees.Mobile_Number}}' readonly>
+                                </div>
+                            </div>
+                            <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+                                <div class="w3-half">
+                                    <p class="w3-small">Nationality</p>
+                                    <input class="w3-input w3-border" type="text" placeholder="Nationality" required name="Nationality" value='{{employees.Nationality}}' readonly>
+                                </div>
+                                <div class="w3-half">
+                                    <p class="w3-small">Date of Joining</p>
+                                    <input class="w3-input w3-border" type="text" placeholder="Date of Joining" required name="Date of Joining" value='{{employees.Hire_Date}}' readonly>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- Footer -->
+<footer class="w3-container w3-padding-8 w3-center w3-opacity">
+    <div class="w3-xlarge w3-padding-32">
+        <i class="fa fa-facebook-official w3-hover-opacity"></i>
+        <i class="fa fa-instagram w3-hover-opacity"></i>
+        <i class="fa fa-snapchat w3-hover-opacity"></i>
+        <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+        <i class="fa fa-twitter w3-hover-opacity"></i>
+        <i class="fa fa-linkedin w3-hover-opacity"></i>
+        </div>
+</footer>
+
+</body>
+</html>
+
+
+{% endblock %}

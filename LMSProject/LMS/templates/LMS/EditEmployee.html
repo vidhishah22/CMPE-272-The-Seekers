@@ -1,0 +1,246 @@
+<!--DOCTYPE html>
+{% extends 'LMS/base.html' %}
+
+
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Employee</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
+.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+.fa-anchor,.fa-coffee {font-size:200px}
+</style>
+</head>
+<body>
+<div class="w3-row-padding w3-light-grey w3-padding-64 w3-container" id="editemployee">
+    <div class="w3-content">
+        <div class="w3-twothird">
+            <h1>Add/Update/Delete Employee</h1>
+            <div class="w3-row w3-padding-32">
+                <div class="w3-col m12">
+                        <div class="w3-bar w3-black">
+                            <p><button class="w3-bar-item w3-button w3-hover-blue w3-large" onclick="openEmployee('Add Employee')"> Add Employee </button></p>
+                            <p><button class="w3-bar-item w3-button w3-hover-blue w3-large" onclick="openEmployee('Update Employee')"> Update Employee </button></p>
+                            <p><button class="w3-bar-item w3-button w3-hover-blue w3-large" onclick="openEmployee('Delete Employee')"> Delete Employee </button></p>
+                        </div>
+                        <!-- Add Employee Grid -->
+                        <!--form action="AddEmployee" method="post">
+                            <div class="w3-row w3-padding-32 addEmp" id="Add Employee">
+                            <h4>Add Employee</h4>
+                            <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+                                <div class="w3-half">
+                                    <p class="w3-small">First Name</p>
+                                    <input class="w3-input w3-border" type="text" placeholder="First Name" required name="FName" required>
+                                </div>
+                                <div class="w3-half">
+                                    <p class="w3-small">Middle Name</p>
+                                    <input class="w3-input w3-border" type="text" placeholder="Middle Name" name="MName">
+                                </div>
+                                <div class="w3-half">
+                                    <p class="w3-small">Last Name</p>
+                                    <input class="w3-input w3-border" type="text" placeholder="Last Name" required name="LName" required>
+                                </div>
+                                <div class="w3-half">
+                                    <p class="w3-small">Date Of Birth</p>
+                                    <input class="w3-input w3-border" type="date" placeholder="Date Of Birth" required name="DOB" required>
+                                </div>
+                                <div class="w3-half">
+                                    <p class="w3-small">Street Address</p>
+                                    <input class="w3-input w3-border" type="text" placeholder="Street Address" required name="StreetAddress" required>
+                                </div>
+                                <div class="w3-half">
+                                    <p class="w3-small">Address2</p>
+                                    <input class="w3-input w3-border" type="text" placeholder="Address2" required name="Address2">
+                                </div>
+                            </div>
+                            <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+                                <div class="w3-half">
+                                    <p class="w3-small">City</p>
+                                    <input class="w3-input w3-border" type="text" placeholder="City" required name="City" required>
+                                </div>
+                                <div class="w3-half">
+                                    <p class="w3-small">State/Region/Province</p>
+                                    <input class="w3-input w3-border" type="text" placeholder="State/Region/Province" required name="State" required>
+                                </div>
+                            </div>
+                            <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+                                <div class="w3-half">
+                                    <p class="w3-small">Zip Code</p>
+                                    <input class="w3-input w3-border" type="text" placeholder="Zip Code" required name="Zip" required>
+                                </div>
+                                <div class="w3-half">
+                                    <p class="w3-small">Country</p>
+                                    <input class="w3-input w3-border" type="text" placeholder="Country" required name="Country" required>
+                                </div>
+                            </div>
+                            <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+                                <div class="w3-half">
+                                    <p class="w3-small">Email Address</p>
+                                    <input class="w3-input w3-border" type="text" placeholder="Email Address" required name="Email" required>
+                                </div>
+                                <div class="w3-half">
+                                    <p class="w3-small">Phone Number</p>
+                                    <input class="w3-input w3-border" type="text" placeholder="Phone Number" required name="PhoneNo" required>
+                                </div>
+                            </div>
+                            <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+                                <div class="w3-half">
+                                    <p class="w3-small">Salary</p>
+                                    <input class="w3-input w3-border" type="text" placeholder="Salary" required name="Salary" required>
+                                </div>
+                                <div class="w3-half">
+                                    <p class="w3-small">Date of Joining</p>
+                                    <input class="w3-input w3-border" type="date" placeholder="Date of Joining" required name="DOJ" required>
+                                </div>
+                            </div>
+
+                             <button onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-black w3-section w3-right" type="submit">Add</button>
+                                        <div id="id01" class="w3-modal">
+                                            <div class="w3-modal-content">
+                                                <div class="w3-container">
+                                                    <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+                                                    <p>Employee has been added to the database.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+                            <!--button class="w3-button w3-black w3-section w3-right" type="submit">Add</--button-->
+                        </div>
+                        </form>
+
+
+
+
+
+
+                        <!-- Update Employee Grid -->
+                        <!--div class="w3-row w3-padding-32 addEmp" id="Update Employee" style="display:none">
+                            <h4>Update Employee</h4>
+
+                            <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+                                <form class="example" action="action_page.php">
+                                <input type="text" placeholder="Search.." name="search">
+                                <button type="submit"><i class="fa fa-search"></i></button>
+                                </form>
+                                <div class="w3-half">
+                                    <p class="w3-small">Street Address</p>
+                                    <input class="w3-input w3-border" type="text" placeholder="Street Address" required name="Street Address">
+                                </div>
+                                <div class="w3-half">
+                                    <p class="w3-small">Address2</p>
+                                    <input class="w3-input w3-border" type="text" placeholder="Address2" required name="Address2">
+                                </div>
+                            </div>
+                            <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+                                <div class="w3-half">
+                                    <p class="w3-small">City</p>
+                                    <input class="w3-input w3-border" type="text" placeholder="City" required name="City">
+                                </div>
+                                <div class="w3-half">
+                                    <p class="w3-small">State</p>
+                                    <input class="w3-input w3-border" type="text" placeholder="State" required name="State">
+                                </div>
+                            </div>
+                            <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+                                <div class="w3-half">
+                                    <p class="w3-small">Postal Code</p>
+                                    <input class="w3-input w3-border" type="text" placeholder="Postal Code" required name="Postal Code">
+                                </div>
+                                <div class="w3-half">
+                                    <p class="w3-small">Country</p>
+                                    <input class="w3-input w3-border" type="text" placeholder="Country" required name="Country">
+                                </div>
+                            </div>
+                            <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+                                <div class="w3-half">
+                                    <p class="w3-small">Email Address</p>
+                                    <input class="w3-input w3-border" type="text" placeholder="Email Address" required name="Email Address">
+                                </div>
+                                <div class="w3-half">
+                                    <p class="w3-small">Mobile Number</p>
+                                    <input class="w3-input w3-border" type="text" placeholder="Mobile Number" required name="Mobile Number">
+                                </div>
+                            </div>
+                            <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+                                <div class="w3-half">
+                                    <p class="w3-small">Salary</p>
+                                    <input class="w3-input w3-border" type="text" placeholder="Salary" required name="Salary">
+                                </div>
+                                <div class="w3-half">
+                                    <p class="w3-small">Manager</p>
+                                    <input class="w3-input w3-border" type="text" placeholder="Manager" required name="Manager">
+                                </div>
+                            </div>
+                        <button class="w3-button w3-black w3-section w3-right" type="submit">Update</button>
+                        </div>
+                        <!-- Delete Employee Grid -->
+                        <!--form action="DeleteEmployee" method="post">
+                        <div class="w3-row w3-padding-32 addEmp" id="Delete Employee" style="display:none">
+                    <h4>Delete Employee</h4>
+
+                    <p class="w3-small">Employee ID</p>
+                            <form class="example"  action="action_page.php">
+                                <input type="text" placeholder="Search.." name="search">
+                                <button type="submit"><i class="fa fa-search"></i></button>
+
+                            </form>
+
+                    <input class="w3-input w3-border" type="text" placeholder="Display Employee Info- Name and Id" required name="Emp_No">
+                    <button  class="w3-button w3-black w3-section w3-right" type="submit">Delete</button>
+                    <div id="id02" class="w3-modal">
+                        <div class="w3-modal-content">
+                            <div class="w3-container">
+                                <span onclick="location.href='{% url 'DeleteEmployee' %}'" class="w3-button w3-display-topright">&times;</span>
+                                <p>Employee has been deleted</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                        </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+<!-- Footer -->
+<!--footer class="w3-container w3-padding-10 w3-center w3-opacity">
+    <div class="w3-xlarge w3-padding-32">
+        <i class="fa fa-facebook-official w3-hover-opacity"></i>
+        <i class="fa fa-instagram w3-hover-opacity"></i>
+        <i class="fa fa-snapchat w3-hover-opacity"></i>
+        <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+        <i class="fa fa-twitter w3-hover-opacity"></i>
+        <i class="fa fa-linkedin w3-hover-opacity"></i>
+    </div>
+</footer>
+
+
+
+
+<script>
+function openEmployee(employee) {
+    var i;
+    var x = document.getElementsByClassName("addEmp");
+    for (i = 0; i < x.length; i++) {
+       x[i].style.display = "none";
+    }
+    document.getElementById(employee).style.display = "block";
+}
+</script>
+
+</body>
+</html>
+{% endblock %}

@@ -17,56 +17,56 @@ class SimpleTest(unittest.TestCase):
         self.factory = RequestFactory()
 
     def test_get_user_tweets(self):
-        print("Get User Tweets Unit Test")
+        print("TC1: Get User Tweets Unit Test")
         request = self.factory.get('/TwitterApi/TheSeekers/')
 
         output1 = get_user_tweets(request)
         self.assertEqual(output1.status_code, 200)
 
     def test_get_mention_tweets(self):
-        print("Get Mention Tweets Unit Test")
+        print("TC2: Get Mention Tweets Unit Test")
         request = self.factory.get('/TwitterApi/TheSeekers/')
 
         output2 = get_mention_tweets(request)
         self.assertEqual(output2.status_code, 200)
 
     def test_get_id_based_tweets(self):
-        print("Get ID based Tweets Unit Test")
+        print("TC3: Get ID based Tweets Unit Test")
         request = self.factory.get('/TwitterApi/TheSeekers/')
 
         output3 = get_id_based_tweets(request)
         self.assertEqual(output3.status_code, 200)
 
     def test_get_friends(self):
-        print("Get Friends Unit Test")
+        print("TC4: Get Friends Unit Test")
         request = self.factory.get('/TwitterApi/TheSeekers/')
 
         output4 = get_friends(request)
         self.assertEqual(output4.status_code, 200)
 
     def test_get_followers(self):
-        print("Get Followers Unit Test")
+        print("TC5: Get Followers Unit Test")
         request = self.factory.get('/TwitterApi/TheSeekers/')
 
         output5 = get_followers(request)
         self.assertEqual(output5.status_code, 200)
 
     def test_get_account_settings(self):
-        print("Get Account Settings Unit Test")
+        print("TC6: Get Account Settings Unit Test")
         request = self.factory.get('/TwitterApi/TheSeekers/')
 
         output6 = get_account_settings(request)
         self.assertEqual(output6.status_code, 200)
 
     def test_get_privacy_policy(self):
-        print("Get Privacy Policy Unit Test")
+        print("TC7: Get Privacy Policy Unit Test")
         request = self.factory.get('/TwitterApi/TheSeekers/')
 
         output7 = get_privacy_policy(request)
         self.assertEqual(output7.status_code, 200)
 
     def test_get_terms_of_service(self):
-        print("Get Privacy Policy Unit Test")
+        print("TC8: Get Privacy Policy Unit Test")
         request = self.factory.get('/TwitterApi/TheSeekers/')
 
         output8 = get_terms_of_service(request)

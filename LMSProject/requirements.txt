@@ -1,0 +1,8 @@
+Django==2.1.2
+psycopg2
+requests
+oauth2
+pyjwt
+python-jose
+six
+python-dotenv

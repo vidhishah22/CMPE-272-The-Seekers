@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+{% extends 'LMS/base.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Apply For Leave</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <!--<script src="js/my.js"></script>-->
+    <style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
+.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+.fa-anchor,.fa-coffee {font-size:200px}
+</style>
+</head>
+<body>
+<div class="w3-row-padding w3-light-grey w3-padding-64 w3-container" id="applyforleave">
+    <div class="w3-content">
+        <h1>Apply For Leave</h1>
+        <div class="w3-row w3-padding-32">
+            <div class="w3-col m12">
+                <div action="/action_page.php" target="_blank">
+                    <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+                        <div class="w3-half">
+                            <div class="w3-bar w3-black w3-twothird">
+                                <p><button class="w3-bar-item w3-button w3-hover-blue w3-large w3-half" onclick="openLeave('Request Leave')"> Request Leave </button></p>
+                                <p><button class="w3-bar-item w3-button w3-hover-blue w3-large w3-half" onclick="openLeave('Leave History')"> Leave History </button></p>
+                            </div>
+                            <!-- <p class="w3-small">Absence Type</p> -->
+                            <!-- <input class="w3-input w3-border" type="text" placeholder="Absence Type" name="Absence Type" required> -->
+                            <div class="w3-row w3-padding-32 RequestLeave" id="Request Leave">
+                                <h4>Request Leave</h4>
+                                <form class="w3-container w3-margin-top w3-card-4" action="ApplyForLeave"  method="post">
+                                    <select class="w3-select" name="leaveOption" onChange="getAvailableDays(this.options[this.selectedIndex].value)">
+                                        <option value="" disabled selected>Choose Leave Type</option>
+                                        <option value="Personal">Personal</option>
+                                        <option value="Annual">Annual</option>
+                                        <option value="Military">Military</option>
+                                        <option value="PDL">Pregnancy Disability</option>
+                                    </select>
+
+                                    <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+                                        <div class="w3-half">
+                                            <p class="w3-small"><label> <i class="fa fa-calendar-check-o"></i> Begin Date </label></p>
+                                            <input class="w3-input w3-border" type="date" placeholder="YYYY MM DD" name="BeginDate" id="startDate">
+                                        </div>
+                                    </div>
+                                    <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+                                        <div class="w3-half">
+                                            <p class="w3-small"><label> <i class="fa fa-calendar-check-o"></i> End Date </label></p>
+                                            <input class="w3-input w3-border" type="date" placeholder="YYYY MM DD" name="EndDate" required id="endDate" onchange="getRequestedDays()">
+                                        </div>
+                                    </div>
+                                    <div class="w3-row-padding" name="availableDays" id="availableDays" style="margin:0 -16px 8px -16px">
+                                        <div class="w3-half">
+                                            <p class="w3-small" >Available Days :</p>
+                                            <input class="w3-input w3-border"value='{{leave_balance.Available_Days}}' readonly>
+                                        </div>
+                                    </div>
+                                    <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+                                        <div class="w3-half">
+                                            <p class="w3-small">Requesting Days :</p>
+                                            <input class="w3-input w3-border" id="requestedDays" type="number" value="1" name="Days" min="1" max="100" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+                                        <div class="w3-full">
+                                            <p class="w3-small">Reason/Comments</p>
+                                            <input class="w3-input w3-border" type="text" placeholder="Add Comments" id="Reason" name="Reason">
+                                        </div>
+                                    </div>
+                                    <!--<button onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-black w3-section w3-left" type="submit">Submit</button> -->
+                                    <button onclick="return checkErrors()" class="w3-button w3-black w3-section w3-left" type="submit">Submit</button>
+                                </form>
+                                <!-- <div id="id01" class="w3-modal">
+                                     <div class="w3-modal-content">
+                                         <div class="w3-container">
+                                             <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+                                             <p>Your request for leave has been successfully sent for approval</p>
+                                         </div>
+                                     </div>
+                                 </div>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="w3-half w3-top w3-margin-top w3-padding-64">
+                <input id="errorBox" class="w3-input w3-border" type="text" style="visibility:hidden"/>
+            </div>
+            <!-- Leave History -->
+            <div class="w3-container">
+                <div class="w3-row w3-padding-32 RequestLeave" id="Leave History" style="display:none">
+                    <div class="w3-row-padding w3-margin-top" style="margin:0 -16px 8px -16px">
+                        <div>
+                            <h4>Leave History</h4>
+                            <table class="w3-table-all" action="LeaveHistory"  method="post">
+                                <thead>
+                                <tr class="w3-blue">
+                                    <th>Absence Type</th>
+                                    <th>Begin Date</th>
+                                    <th>End Date</th>
+                                    <th>Requested Days</th>
+                                    <th>Request Status</th>
+                                    <th>Cancel Leave</th>
+
+                                    {% for leaves in leavesArray %}
+
+                                <tr>
+                                    <td>{{leaves.Leave_Type}}</td>
+                                    <td>{{leaves.Begin_Date}}</td>
+                                    <td>{{leaves.End_Date}}</td>
+                                    <td>{{leaves.Requested_Days}}</td>
+                                    <td>{{leaves.Leave_Status}}</td>
+                                    <form class="w3-container w3-margin-top w3-card-4" action="ApplyForLeave"  method="post">
+                                        <td><input type="submit" style="display:{{leaves.Display}};" formaction="ApplyForLeave?cancelLeave={{leaves.Leave_Id}}" value="Cancel"/></td>
+                                    </form>
+                                </tr>
+                                </thead>
+                                {% endfor %}
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <script>
+function openLeave(leave) {
+    var i;
+    var x = document.getElementsByClassName("RequestLeave");
+    for (i = 0; i < x.length; i++) {
+       x[i].style.display = "none";
+    }
+    document.getElementById(leave).style.display = "block";
+}
+
+function getAvailableDays(leaveType) {
+
+    $.ajax({
+        url: "ApplyForLeave?LeaveType="+leaveType,
+        success: function(data){
+
+         $('#availableDays').html(jQuery(data).find('#availableDays').html());
+
+        },/*./success*/
+        error: function(xhr, status, error) {
+
+        }/*  end of error */
+    });
+}
+
+function getRequestedDays() {
+    var startDate = document.getElementById("startDate").value
+    var endDate = document.getElementById("endDate").value
+    var date1 = new Date(startDate);
+    var date2 = new Date(endDate);
+    var timeDiff = Math.abs(date2.getTime() - date1.getTime());
+    var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+    document.getElementById("requestedDays").value = diffDays;
+}
+
+function checkErrors() {
+    var listErrors = []
+    var startDate = document.getElementById("startDate").value
+    var date1 = new Date(startDate);
+
+    if(startDate == "") {
+        listErrors.push("Start date can not be null");
+    } else {
+
+        var today = new Date();
+        today.setHours(0,0,0,0);
+        if(date1 < today) {
+            listErrors.push("Start date can not be less than today's date.");
+        }
+    }
+
+    var endDate = document.getElementById("endDate").value
+    if(endDate == "") {
+        listErrors.push("End date can not be null");
+    } else {
+        var date2 = new Date(endDate);
+        if(date2 < date1) {
+            listErrors.push("End date can not be less than start date.");
+        }
+    }
+
+    var comments = document.getElementById("Reason").value
+
+    if(comments == "") {
+        listErrors.push("Comments can not be null.");
+    }
+
+    var arrayLength = listErrors.length;
+
+    if(arrayLength == 0) {
+        alert("request submitted successfully");
+        return true;
+    } else {
+        for (var i = 0; i < arrayLength; i++) {
+        alert(listErrors[i]);
+        //Do something
+        }
+
+        return false;
+    }
+
+
+}
+
+
+</script>
+
+    <!-- Footer -->
+    <footer class="w3-container w3-padding-10 w3-center w3-opacity">
+        <div class="w3-xlarge w3-padding-32">
+            <i class="fa fa-facebook-official w3-hover-opacity"></i>
+            <i class="fa fa-instagram w3-hover-opacity"></i>
+            <i class="fa fa-snapchat w3-hover-opacity"></i>
+            <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+            <i class="fa fa-twitter w3-hover-opacity"></i>
+            <i class="fa fa-linkedin w3-hover-opacity"></i>
+        </div>
+    </footer>
+
+
+
+</body>
+</html>
+{% endblock %}
