@@ -17,5 +17,5 @@ urlpatterns = [
     url('complete/auth0', views.auth0),
     url(r'^profile', views.profile),
     #url(r'^logout', views.logout, name='logout'),
-    path('TheSeekers/login/Auth0', views.logout, name='logout'),
+    path('TheSeekers/', views.logout, name='logout'),
 ]
