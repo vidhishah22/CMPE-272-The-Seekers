@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" type="text/css" />
     <style>
 body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 .w3-bar,h1,button {font-family: "Montserrat", sans-serif}
@@ -16,22 +17,24 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 </head>
 <body>
 <!-- Navbar -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 <div class="w3-top">
-    <div class="w3-bar w3-blue w3-card w3-left-align w3-large">
+    <div class="w3-bar w3-black w3-card w3-left-align w3-large">
 
 
-        <a href="{% url 'Home' %}" class="w3-bar-item w3-button w3-padding-large w3-white">Home</a>
-        <a href="{% url 'profile' %}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Profile</a>
+        <a href="{% url 'Home' %}" class="w3-bar-item w3-button w3-padding-large w3-white" id="Home">Home</a>
+        <a href="{% url 'profile' %}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" id="Profile">Profile</a>
         {% if role == 'Employee' or role == 'Manager'%}
-        <a href="{% url 'ApplyForLeave' %}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Apply For Leave</a>
+        <a href="{% url 'ApplyForLeave' %}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" id="ApplyForLeave">Apply For Leave</a>
         {% endif %}
         {% if role == 'HR' or role == 'Manager'%}
-        <a href="{% url 'ApproveLeave' %}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Approve Leave</a>
+        <a href="{% url 'ApproveLeave' %}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" id="ApproveLeave">Approve Leave</a>
         {% endif %}
         <!--{% if role == 'HR' %}
         a class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Add/Edit/Delete Employee
         {% endif %}</a-->
-        <a href="{% url 'logout' %}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Log Out</a>
+        <a href="{% url 'logout' %}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" id="Logout">Log Out</a>
     </div>
 
     <!-- Navbar on small screens>
@@ -51,6 +54,12 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
     {% endblock %}
 
 </div>
+
+<footer class="w3-container w3-padding-8 w3-center w3-opacity">
+    <div class="w3-xlarge w3-padding-32">
+        <p class="w3-medium">For any question/issue, please don't hesitate to contact HR support.</p>
+    </div>
+</footer>
 
 
 <script>
