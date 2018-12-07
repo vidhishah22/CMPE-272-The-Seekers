@@ -129,7 +129,7 @@ STATIC_URL = '/static/'
 AUTH0_CLIENT_ID = 'LCTMUEpEUe9eV_0NWzAkUvkqF6cC19aT'
 AUTH0_CLIENT_SECRET = 'OfVy3Tj1iNgZ__opD2NEYym_H_XZqbZiHRPJrhkuK1wYWuygwrYhWB-zfWpu2oLo'
 AUTH0_DOMAIN = 'seekerslms.auth0.com'
-SERVER_URL ='localhost:8000'
+SERVER_URL ='13.52.79.32:8000'
 METADATA_NAMESPACE ='http://Lms.seekers.com/'
 
 LOGIN_URL = "/LMS/TheSeekers/login/auth0"
