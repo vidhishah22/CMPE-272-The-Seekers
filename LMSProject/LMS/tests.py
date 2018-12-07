@@ -33,19 +33,19 @@ class SimpleTest(unittest.TestCase):
         request.session.save()
         return request
 
-    @patch('jwt.decode')
-    def test_profile(self, mock_jwt):
-        print("TC2: Get Profile Page:")
-        request = self.factory.get('/LMS/TheSeekers/')
-        request=self.add_session_to_request(request)
-        # print ('2222222---->', request.session)
-        # print(self.emp)
-        request.session['id_token']="abcd"
-        userinfo =  {'http://Lms.seekers.com/app_metadata': {'role': 'Manager'}, 'http://Lms.seekers.com/user_metadata': {}, 'given_name': 'Big', 'name': 'Big Bob', 'picture': 'https://lh4.googleusercontent.com/-rW-L8-Mdn6Y/AAAAAAAAAAI/AAAAAAAAGj0/dxNCMduKcmM/photo.jpg', 'gender': 'female', 'locale': 'en-GB', 'updated_at': '2018-12-07T18:18:05.806Z', 'email': 'bigbob@gmail.com', 'email_verified': True, 'iss': 'https://seekerslms.auth0.com/', 'sub': 'google-oauth2|104087801749009073568', 'aud': 'LCTMUEpEUe9eV_0NWzAkUvkqF6cC19aT', 'iat': 1544206686, 'exp': 1544242686}
-        mock_jwt.return_value = userinfo
-        output2 = profile(request)
-        # print("*****output 1234:",output2.content)
-        self.assertEqual(output2.status_code, 200)
+    # @patch('jwt.decode')
+    # def test_profile(self, mock_jwt):
+    #     print("TC2: Get Profile Page:")
+    #     request = self.factory.get('/LMS/TheSeekers/')
+    #     request=self.add_session_to_request(request)
+    #     # print ('2222222---->', request.session)
+    #     # print(self.emp)
+    #     request.session['id_token']="abcd"
+    #     userinfo =  {'http://Lms.seekers.com/app_metadata': {'role': 'Manager'}, 'http://Lms.seekers.com/user_metadata': {}, 'given_name': 'Big', 'name': 'Big Bob', 'picture': 'https://lh4.googleusercontent.com/-rW-L8-Mdn6Y/AAAAAAAAAAI/AAAAAAAAGj0/dxNCMduKcmM/photo.jpg', 'gender': 'female', 'locale': 'en-GB', 'updated_at': '2018-12-07T18:18:05.806Z', 'email': 'bigbob@gmail.com', 'email_verified': True, 'iss': 'https://seekerslms.auth0.com/', 'sub': 'google-oauth2|104087801749009073568', 'aud': 'LCTMUEpEUe9eV_0NWzAkUvkqF6cC19aT', 'iat': 1544206686, 'exp': 1544242686}
+    #     mock_jwt.return_value = userinfo
+    #     output2 = profile(request)
+    #     # print("*****output 1234:",output2.content)
+    #     self.assertEqual(output2.status_code, 200)
 
     # @patch('jwt.decode')
     # def test_Home(self, mock_jwt):
