@@ -1,12 +1,30 @@
-{% extends 'LMS/layout.html' %}
+<!DOCTYPE html>
+<html>
+<title>Leave Management System</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<style>
+body,h1 {font-family: "Raleway", sans-serif}
+body, html {height: 100%}
+.bgimg {
+    background-image: url('https://www.w3schools.com/w3images/forestbridge.jpg');
+    min-height: 100%;
+    background-position: center;
+    background-size: cover;
+}
+</style>
+<body>
 
-{% block content %}
-    <div class="login-page clearfix">
-        <div class="login-box auth0-box before">
-            <!--<img src="https://i.cloudup.com/StzWWrY34s.png" />-->
-            <h3>Leave Management System</h3>
-            <p>A portal for all the employees to view and apply leaves.</p>
-            <a id="qsLoginBtn" class="btn btn-primary btn-login" href="/LMS/login/auth0">Click to Log In</a>
-        </div>
-    </div>
-{% endblock content %}
+<div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
+  <div class="w3-display-middle">
+    <h1 class="w3-xxxlarge w3-animate-top">LEAVE MANAGEMENT SYSTEM</h1>
+      <p class="w3-large w3-center">A portal for all the employees to view and apply leaves.</p>
+      <div class="w3-center">
+      <a id="qsLoginBtn" class="w3-button w3-blue" href="/LMS/login/auth0">Click to Log In</a>
+      </div>
+  </div>
+</div>
+</body>
+</html>

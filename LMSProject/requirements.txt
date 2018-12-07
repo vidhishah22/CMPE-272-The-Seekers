@@ -6,3 +6,4 @@ pyjwt
 python-jose
 six
 python-dotenv
+numpy

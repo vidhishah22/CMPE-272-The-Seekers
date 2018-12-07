@@ -17,34 +17,25 @@
 body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 .w3-bar,h1,button {font-family: "Montserrat", sans-serif}
 .fa-anchor,.fa-coffee {font-size:200px}
+.bgimghome {
+    background-image: url('http://www.hddesktopbackgrounds.us/backgrounds-images/1920x1080/0vi0g-wallpapers-48199512-1920x1080.jpg');
+    min-height: 100%;
+    background-position: center;
+    background-size: cover;
 </style>
 </head>
 
 <body>
     <!-- Header -->
-    <div class="w3-blue">
+    <div class="bgimghome w3-display-container w3-animate-opacity">
     <header class="w3-container w3-center" style="padding:200px 16px" id="home">
     <h1 class="w3-margin w3-jumbo">Home Page</h1>
     <p class="w3-xlarge">Welcome to the Leave Management System</p>
     <p class="w3-large">Name of Employee: {{employees.First_Name}} {{employees.Last_Name}}</p>
-     <p class="w3-large">Employee ID: {{employees.Emp_No}}</p>
     <p class="w3-large">Designation : {{employees.Designation}}</p>
-    <p class="w3-medium">For any question/issue, please don't hesitate to contact HR support.</p>
     <!--button class="w3-button w3-black w3-padding-large w3-large w3-margin-top">Get Started</button-->
     </header>
     </div>
-
-        <!-- Footer -->
-<footer class="w3-container w3-padding-8 w3-center w3-opacity">
-    <div class="w3-xlarge w3-padding-32">
-        <i class="fa fa-facebook-official w3-hover-opacity"></i>
-        <i class="fa fa-instagram w3-hover-opacity"></i>
-        <i class="fa fa-snapchat w3-hover-opacity"></i>
-        <i class="fa fa-pinterest-p w3-hover-opacity"></i>
-        <i class="fa fa-twitter w3-hover-opacity"></i>
-        <i class="fa fa-linkedin w3-hover-opacity"></i>
-    </div>
-</footer>
 </body>
 </html>
  {% endblock %}

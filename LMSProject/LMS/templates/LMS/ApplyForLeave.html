@@ -34,7 +34,6 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
         <h1>Apply For Leave</h1>
         <div class="w3-row w3-padding-32">
             <div class="w3-col m12">
-                <div action="/action_page.php" target="_blank">
                     <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
                         <div class="w3-half">
                             <div class="w3-bar w3-black w3-twothird">
@@ -54,8 +53,20 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
                                                 <option value="Personal">Personal</option>
                                                 <option value="Annual">Annual</option>
                                                 <option value="Military">Military</option>
+                                                {% if gender == 'F' %}
                                                 <option value="PDL">Pregnancy Disability</option>
+                                                {% endif %}
                                             </select>
+                                        </div>
+                                    </div>
+                                    <div class="w3-row-padding" name="holidays" style="margin:0 -16px 8px -16px">
+                                        <div>
+                                            <p class="w3-small" >Upcoming Holidays</p>
+                                            <ul>
+                                                <li>Dec 24 2018 - Christmas Eve</li>
+                                                <li>Dec 25 2018 - Christmas Day</li>
+                                                <li>Dec 31 2018 - New Year's Eve</li>
+                                            </ul>
                                         </div>
                                     </div>
                                     <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
@@ -73,7 +84,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
                                     <div class="w3-row-padding" name="availableDays" id="availableDays" style="margin:0 -16px 8px -16px">
                                         <div class="w3-half">
                                             <p class="w3-small" >Available Days :</p>
-                                            <input class="w3-input w3-border"value='{{leave_balance.Available_Days}}' readonly>
+                                            <input class="w3-input w3-border"value='{{leave_balance.Available_Days}}' readonly id="txtavailableDays">
                                         </div>
                                     </div>
                                     <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
@@ -87,25 +98,11 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
                                             <p class="w3-small">Reason/Comments</p>
                                             <input class="w3-input w3-border" type="text" placeholder="Add Comments" id="Reason" name="Reason">
                                         </div>
-                                    </div>
-                                    <!--<button onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-black w3-section w3-left" type="submit">Submit</button> -->
-                                    <button onclick="return checkErrors()" class="w3-button w3-black w3-section w3-left" type="submit">Submit</button>
+                                    </div><button onclick="return checkErrors()" class="w3-button w3-black w3-section w3-left" type="submit">Submit</button>
                                 </form>
-                                <!-- <div id="id01" class="w3-modal">
-                                     <div class="w3-modal-content">
-                                         <div class="w3-container">
-                                             <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
-                                             <p>Your request for leave has been successfully sent for approval</p>
-                                         </div>
-                                     </div>
-                                 </div>-->
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="w3-half w3-top w3-margin-top w3-padding-64">
-                <input id="errorBox" class="w3-input w3-border" type="text" style="visibility:hidden"/>
             </div>
             <!-- Leave History -->
             <div class="w3-container">
@@ -145,18 +142,6 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
         </div>
     </div>
 </div>
-
-    <!-- Footer -->
-    <footer class="w3-container w3-padding-10 w3-center w3-opacity">
-        <div class="w3-xlarge w3-padding-32">
-            <i class="fa fa-facebook-official w3-hover-opacity"></i>
-            <i class="fa fa-instagram w3-hover-opacity"></i>
-            <i class="fa fa-snapchat w3-hover-opacity"></i>
-            <i class="fa fa-pinterest-p w3-hover-opacity"></i>
-            <i class="fa fa-twitter w3-hover-opacity"></i>
-            <i class="fa fa-linkedin w3-hover-opacity"></i>
-        </div>
-    </footer>
 </body>
 </html>
 
@@ -188,14 +173,25 @@ function getAvailableDays(leaveType) {
 }
 
 function getRequestedDays() {
-    var startDate = document.getElementById("startDate").value
-    var endDate = document.getElementById("endDate").value
-    var date1 = new Date(startDate);
-    var date2 = new Date(endDate);
-    var timeDiff = Math.abs(date2.getTime() - date1.getTime());
-    var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
-    document.getElementById("requestedDays").value = diffDays;
+    var start = document.getElementById("startDate").value
+    var end = document.getElementById("endDate").value
+    var holidayArray2013 = ['2018-12-24', '2018-12-25','2018-12-31'];
+    var startDate = new Date(start + ' 00:00:00 PST');
+    var endDate = new Date(end + ' 00:00:00 PST');
+    var curDate = startDate;
+    var count = 0
+    while (curDate <= endDate) {
+        var dayOfWeek = curDate.getDay();
+        var isWeekend = (dayOfWeek == 6) || (dayOfWeek == 0);
+        debugger;
+        if(isWeekend || $.inArray(curDate.toISOString().slice(0,10), holidayArray2013) > -1)
+            count--
+        count++;
+        curDate.setDate(curDate.getDate() + 1)
+    }
+    document.getElementById("requestedDays").value = count;
 }
+
 
 function checkErrors() {
     var listErrors = []
@@ -223,10 +219,10 @@ function checkErrors() {
         }
     }
 
-    var comments = document.getElementById("Reason").value
-
-    if(comments == "") {
-        listErrors.push("Comments can not be null.");
+    var availableDays = document.getElementById("txtavailableDays").value
+    var requestedDays = document.getElementById("requestedDays").value
+    if(availableDays < requestedDays){
+        listErrors.push("Leave limit exceeded.");
     }
 
     var arrayLength = listErrors.length;
@@ -245,6 +241,24 @@ function checkErrors() {
     }
 
 
+}
+
+toastr.options = {
+  "closeButton": true,
+  "debug": false,
+  "newestOnTop": false,
+  "progressBar": false,
+  "positionClass": "toast-top-right",
+  "preventDuplicates": false,
+  "onclick": null,
+  "showDuration": "500",
+  "hideDuration": "1000",
+  "timeOut": "5000",
+  "extendedTimeOut": "1000",
+  "showEasing": "swing",
+  "hideEasing": "linear",
+  "showMethod": "fadeIn",
+  "hideMethod": "fadeOut"
 }
 
 

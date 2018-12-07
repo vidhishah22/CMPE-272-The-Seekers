@@ -9,12 +9,13 @@ from django import forms
 from .decorators import login_required, manager, hr, employee, hr_or_manager, employee_or_manager
 from django.contrib import auth, messages
 import requests
-from LMS.models import Employee
 import jwt
 from django.conf import settings
 import logging
 import random
 from django.core.mail import send_mail
+import numpy as np
+import datetime
 
 
 fmt = getattr(settings, 'LOG_FORMAT', None)
@@ -39,7 +40,7 @@ def login(request):
     payload = {
         'response_type': 'code',
         'client_id': settings.AUTH0_CLIENT_ID,
-        'redirect_uri': 'http://' + settings.SERVER_URL + '/LMS/TheSeekers/complete/auth0'
+        'redirect_uri': 'http://' + request.get_host() + '/LMS/TheSeekers/complete/auth0'
     }
     response = requests.get('https://' + settings.AUTH0_DOMAIN + '/authorize', params=payload)
     return HttpResponse(response)
@@ -51,7 +52,7 @@ def auth0(request):
         'client_id': settings.AUTH0_CLIENT_ID,
         'client_secret': settings.AUTH0_CLIENT_SECRET,
         'code': request.GET.get('code', ''),
-        'redirect_uri': 'http://' + settings.SERVER_URL + '/LMS/TheSeekers/Home'
+        'redirect_uri': 'http://' + request.get_host() + '/LMS/TheSeekers/Home'
     }
     res = requests.post('https://' + settings.AUTH0_DOMAIN + '/oauth/token', json=payload)
     request.session.flush()
@@ -81,6 +82,7 @@ def Home(request):
     token = request.session['id_token']
     userinfo = jwt.decode(token, verify=False)
     employee_list = Employee.objects.get(Email_Address=userinfo['email'])
+    print(request.get_host())
     return render(request, 'LMS/Home.html',
                   {'employees': employee_list, 'role': userinfo[settings.METADATA_NAMESPACE + 'app_metadata']['role']})
 
@@ -93,8 +95,8 @@ def ApplyForLeave(request):
     employee = Employee.objects.get(Email_Address=userinfo['email'])
     empMgrDept = EmpMgrDept.objects.get(Emp_No_EmpMgrDept_id=employee)
     manager = Employee.objects.get(Emp_No=empMgrDept.Manager_Emp_ID_id)
-        #print("Valid form")
     if (request.method == "POST") and (request.POST.get('leaveOption', '') != ""):
+        print(request.POST['BeginDate'])
         empleaverequest = EmpLeaveRequest(Emp_ID=employee, Emp_FullName=empMgrDept.Emp_FullName,
                                           Leave_Type=request.POST['leaveOption'],
                                           Manager_Emp_No=manager, Manager_FullName=empMgrDept.Manager_FullName,
@@ -162,7 +164,7 @@ def ApplyForLeave(request):
 
         leavesArray.append(leaves)
     return render(request, 'LMS/ApplyForLeave.html',
-                  {'employees': request, 'leavesArray': leavesArray, 'leave_balance': leave_balance,
+                  {'employees': request, 'leavesArray': leavesArray, 'leave_balance': leave_balance, 'gender': employee.Gender,
                    'role': userinfo[settings.METADATA_NAMESPACE + 'app_metadata']['role']})
 
 

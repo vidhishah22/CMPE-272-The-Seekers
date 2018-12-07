@@ -3,6 +3,7 @@ from django.conf.urls import url, include
 from . import views
 from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
+from django.views.static import serve
 
 urlpatterns = [
     path('TheSeekers/', views.index, name='index'),
@@ -18,4 +19,5 @@ urlpatterns = [
     url(r'^profile', views.profile),
     #url(r'^logout', views.logout, name='logout'),
     path('TheSeekers/', views.logout, name='logout'),
+    url(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}),
 ]
