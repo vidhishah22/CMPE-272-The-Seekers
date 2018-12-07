@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '7!xi15ucxv%1_b*vi-^jl770q*@v^ks98j%zt2d=z7lj1@0a+#'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
@@ -123,13 +123,17 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = '/LMS/static/'
+
 
 # AUTH0 BACKEND CONFIG
 AUTH0_CLIENT_ID = 'LCTMUEpEUe9eV_0NWzAkUvkqF6cC19aT'
 AUTH0_CLIENT_SECRET = 'OfVy3Tj1iNgZ__opD2NEYym_H_XZqbZiHRPJrhkuK1wYWuygwrYhWB-zfWpu2oLo'
 AUTH0_DOMAIN = 'seekerslms.auth0.com'
-SERVER_URL ='13.52.79.32:8000'
+
+
+# SERVER_URL ='13.52.79.32:8000'
+
 METADATA_NAMESPACE ='http://Lms.seekers.com/'
 
 LOGIN_URL = "/LMS/TheSeekers/login/auth0"

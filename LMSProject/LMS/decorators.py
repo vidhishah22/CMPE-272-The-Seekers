@@ -2,6 +2,7 @@ from django.http import HttpResponseRedirect
 import jwt
 from django.conf import settings
 from django.contrib import messages
+from django.core.exceptions import PermissionDenied
 
 
 def login_required(function):
@@ -23,7 +24,7 @@ def manager(function):
             if userinfo[settings.METADATA_NAMESPACE + 'app_metadata']['role'] == 'Manager':
                 return function(request, *args, **kwargs)
             else:
-                return HttpResponseRedirect('/LMS/login/')
+                raise PermissionDenied
         else:
             return HttpResponseRedirect('/LMS/login/')
 
@@ -40,8 +41,7 @@ def employee(function):
             if userinfo[settings.METADATA_NAMESPACE + 'app_metadata']['role'] == 'Employee':
                 return function(request, *args, **kwargs)
             else:
-                #messages.error(request, 'Unauthorized Access.')
-                raise exceptions.PermissionDenied()
+                raise PermissionDenied
         else:
             return HttpResponseRedirect('/LMS/login/')
 
@@ -58,7 +58,7 @@ def hr(function):
             if userinfo[settings.METADATA_NAMESPACE + 'app_metadata']['role'] == 'HR':
                 return function(request, *args, **kwargs)
             else:
-                return HttpResponseRedirect('/LMS/login/')
+                raise PermissionDenied
         else:
             return HttpResponseRedirect('/LMS/login/')
 
@@ -76,7 +76,7 @@ def hr_or_manager(function):
                     userinfo[settings.METADATA_NAMESPACE + 'app_metadata']['role'] == 'Manager':
                 return function(request, *args, **kwargs)
             else:
-                return HttpResponseRedirect('/LMS/login/')
+                raise PermissionDenied
         else:
             return HttpResponseRedirect('/LMS/login/')
 
@@ -93,7 +93,7 @@ def employee_or_manager(function):
                     userinfo[settings.METADATA_NAMESPACE + 'app_metadata']['role'] == 'Manager':
                 return function(request, *args, **kwargs)
             else:
-                return HttpResponseRedirect('/LMS/login/')
+                raise PermissionDenied
         else:
             return HttpResponseRedirect('/LMS/login/')
 
