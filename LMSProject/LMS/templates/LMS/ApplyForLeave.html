@@ -180,7 +180,7 @@ function getRequestedDays() {
     var endDate = new Date(end + ' 00:00:00 PST');
     var curDate = startDate;
     var count = 0
-    while (curDate <= endDate) {
+    while (curDate < endDate) {
         var dayOfWeek = curDate.getDay();
         var isWeekend = (dayOfWeek == 6) || (dayOfWeek == 0);
         debugger;

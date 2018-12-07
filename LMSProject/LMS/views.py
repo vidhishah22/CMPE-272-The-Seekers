@@ -72,7 +72,7 @@ def profile(request):
     token = request.session['id_token']
     userinfo = jwt.decode(token, verify=False)
     employee_list = Employee.objects.get(Email_Address=userinfo['email'])
-    print(userinfo[settings.METADATA_NAMESPACE + 'app_metadata']['role'])
+    # print(userinfo[settings.METADATA_NAMESPACE + 'app_metadata']['role'])
     return render(request, 'LMS/profile.html',
                   {'employees': employee_list, 'role': userinfo[settings.METADATA_NAMESPACE + 'app_metadata']['role']})
 
@@ -82,7 +82,7 @@ def Home(request):
     token = request.session['id_token']
     userinfo = jwt.decode(token, verify=False)
     employee_list = Employee.objects.get(Email_Address=userinfo['email'])
-    print(request.get_host())
+    # print(request.get_host())
     return render(request, 'LMS/Home.html',
                   {'employees': employee_list, 'role': userinfo[settings.METADATA_NAMESPACE + 'app_metadata']['role']})
 
