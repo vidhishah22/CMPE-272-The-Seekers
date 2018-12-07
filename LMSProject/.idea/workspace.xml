@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ff54bac1-ba78-4e32-8f74-70b2dbc1c343" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LMS/templates/LMS/ApplyForLeave.html" beforeDir="false" afterPath="$PROJECT_DIR$/LMS/templates/LMS/ApplyForLeave.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LMS/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/LMS/tests.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LMS/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/LMS/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -54,13 +50,13 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/LMS/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1032">
+            <state relative-caret-position="3002">
               <caret line="175" column="35" selection-start-line="175" selection-start-column="32" selection-end-line="175" selection-end-column="35" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/LMS/templates/LMS/ApplyForLeave.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="329">
@@ -69,14 +65,13 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/LMS/tests.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="66" selection-start-line="66" selection-end-line="66" />
+            <state relative-caret-position="342">
+              <caret line="18" column="30" selection-start-line="18" selection-start-column="30" selection-end-line="18" selection-end-column="30" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
-                <marker date="1544224770781" expanded="true" signature="1358:1550" ph="..." />
               </folding>
             </state>
           </provider>
@@ -138,8 +133,8 @@
         <option value="$PROJECT_DIR$/LMS/auth0backend.py" />
         <option value="$PROJECT_DIR$/LMSProject/settings.py" />
         <option value="$PROJECT_DIR$/LMS/views.py" />
-        <option value="$PROJECT_DIR$/LMS/tests.py" />
         <option value="$PROJECT_DIR$/LMS/templates/LMS/ApplyForLeave.html" />
+        <option value="$PROJECT_DIR$/LMS/tests.py" />
       </list>
     </option>
   </component>
@@ -363,28 +358,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/LMS/tests.py">
+    <entry file="file://$PROJECT_DIR$/LMS/templates/LMS/ApplyForLeave.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="66" selection-start-line="66" selection-end-line="66" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-            <marker date="1544224770781" expanded="true" signature="1358:1550" ph="..." />
-          </folding>
+        <state relative-caret-position="329">
+          <caret line="186" column="41" selection-start-line="186" selection-start-column="41" selection-end-line="186" selection-end-column="41" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/LMS/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1032">
+        <state relative-caret-position="3002">
           <caret line="175" column="35" selection-start-line="175" selection-start-column="32" selection-end-line="175" selection-end-column="35" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/LMS/templates/LMS/ApplyForLeave.html">
+    <entry file="file://$PROJECT_DIR$/LMS/tests.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
-          <caret line="186" column="41" selection-start-line="186" selection-start-column="41" selection-end-line="186" selection-end-column="41" />
+        <state relative-caret-position="342">
+          <caret line="18" column="30" selection-start-line="18" selection-start-column="30" selection-end-line="18" selection-end-column="30" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -12,19 +12,11 @@ import jwt
 from unittest.mock import patch, Mock
 class SimpleTest(unittest.TestCase):
 
-    #export DJANGO_SETTINGS_MODULE=TwitterApi.settings
-    # Bob=None
-
-    # @classmethod
-    # def setUpTestData(cls):
-    #     cls.Bob = Employee.objects.create(First_Name='Big', Last_Name='Bob', Email_Address='bigbob@gmail.com', Emp_No=9999,
-    #                             Birth_Date='1953-09-02', Hire_Date='1986-06-26')
 
     def setUp(self):
         # Every test needs access to the request factory.
         self.factory = RequestFactory()
         self.client = Client()
-        # Employee.objects.create(First_Name='Big', Last_Name='Bob', Email_Address='bigbob@gmail.com', Emp_No=9999, Birth_Date='1953-09-02', Hire_Date='1986-06-26')
 
     def add_session_to_request(self, request):
         """Annotate a request object with a session"""
@@ -40,15 +32,12 @@ class SimpleTest(unittest.TestCase):
         print("Working Successfully: Status Code -->",output1.status_code,"OK!")
         self.assertEqual(output1.status_code, 200)
 
-    # Emp_No = 9999,
     @patch('jwt.decode')
     def test_profile(self, mock_jwt):
         print("TC2: Get Profile Page:")
         Employee.objects.create(First_Name='Big', Last_Name='Bob', Email_Address='bigbob@gmail.com', Birth_Date='1953-09-02', Hire_Date='1986-06-26')
         request = self.factory.get('/LMS/TheSeekers/')
         request=self.add_session_to_request(request)
-        # print ('2222222---->', request.session)
-        # print(self.emp)
         request.session['id_token']="abcd"
         userinfo =  {'http://Lms.seekers.com/app_metadata': {'role': 'Manager'},'email': 'bigbob@gmail.com'}
         mock_jwt.return_value = userinfo
@@ -56,7 +45,6 @@ class SimpleTest(unittest.TestCase):
         print("Working Successfully: Status Code -->", output2.status_code, "OK!")
         self.assertEqual(output2.status_code, 200)
 
-    # , Emp_No = 9998,
     @patch('jwt.decode')
     def test_Home(self, mock_jwt):
         print("TC3: Get Home Page:")
