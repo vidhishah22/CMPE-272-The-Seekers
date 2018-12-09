@@ -221,7 +221,7 @@ function checkErrors() {
 
     var availableDays = document.getElementById("txtavailableDays").value
     var requestedDays = document.getElementById("requestedDays").value
-    if(availableDays < requestedDays){
+    if(parseInt(availableDays) < parseInt(requestedDays)){
         listErrors.push("Leave limit exceeded.");
     }
 
